@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="shop.dao.OrderItemDao">
+
+	<resultMap type="shop.bean.OrderItem" id="OrderItemMap">
+		<result column="number" property="number" />
+		<association property="user" javaType="shop.bean.user">
+			<result column="u_uuid" property="uuid" />
+		</association>
+		<association property="product" javaType="shop.bean.Product">
+			<result column="pd_uuid" property="uuid" />
+			<result column="pd_name" property="name" />
+			<result column="orignalprice" property="originalPrice" />
+			<result column="promoteprice" property="promotePrice" />
+			<collection property="productImage" ofType="shop.bean.ProductImage">
+				<id column="pd_uuid" property="pd_uuid" />
+				<result column="image_value" property="value"></result>
+			</collection>
+
+		</association>
+
+	</resultMap>
+
+	<select id="selectOrderItemsByUser" resultMap="OrderItemMap">
+		select user.uuid as u_uuid,
+		product.uuid as pd_uuid,
+		product.name as pd_name,
+		orignalprice,
+		promoteprice,
+		productImage.type as image_value,
+		number
+		from user left join orderItem on user.uuid=orderItem.u_uuid left join
+		product on orderItem.pd_uuid=product.uuid left join productImage on
+		product.uuid=productImage.pd_uuid where user.uuid=#{userUUID}
+	</select>
+
+	<insert id="addOrderItem" parameterType="shop.bean.OrderItem">
+		insert into orderItem
+		(pd_uuid,u_uuid,number) values
+		(#{product.uuid},#{user.uuid},#{number})
+	</insert>
+
+</mapper>

@@ -1,0 +1,484 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 引入bootstrap文件 和jquery -->
+<script type="text/javascript" src="static/js/jquery-3.1.0.js"></script>
+<link rel="stylesheet" href="static/js/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="static/js/bootstrap/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+nav.top a:hover{
+color: #C40000;
+text-decoration: none;
+}
+nav.top{
+background-color: #f2f2f2;
+padding-top: 5px;
+padding-bottom: 5px;
+border-bottom: 1px solid ;
+}
+nav.top a{
+color:#999999;
+}
+.glyphicon-home {
+color:#FF0036;
+}
+.glyphicon-shopping-cart{
+color:#FF0036;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	//如果用户已经登录，则隐藏登录注册菜单,未登录则隐藏注销菜单
+	if($("#username").text().length>0)
+		{
+		$("#loginTitle").hide();
+		$("#registerTitle").hide();
+		}else{
+			$("#logout").hide();
+		}
+
+//如果购物车数量为空，则默认显示为0件
+  if($("strong").text()=="" || $("strong")==undefined)
+	  $("strong").text("0");
+	
+});
+</script>
+<nav class="top">
+<a href="fore/index">
+购物首页
+<span class="glyphicon glyphicon-home redColor"></span>
+</a>
+<span>欢迎</span><span id="username"></span>
+<a id="loginTitle" href="user/login">请登录</a>
+<a id="registerTitle" href="user/register">注册</a>
+<span class="pull-right">
+<a href="">我的订单</a>
+<span class="glyphicon glyphicon-shopping-cart redColor"></span>
+<a href="forePermission/showCart">购物车 <strong></strong>件</a>
+<a id="logout" href="user/logout">注销</a>
+</span>
+</nav>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- 引入bootstrap文件 和jquery -->
+<script type="text/javascript"
+	src="static/js/jquery-3.1.0.js"></script>
+<link rel="stylesheet"
+	href="static/js/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="static/js/bootstrap/js/bootstrap.min.js"></script>
+<style type="text/css">
+.wrapper{background:#F5F5F5}
+
+div.mainbody{
+position:relative;
+top:0px;
+left:0px;
+width:1000px;
+margin:0px auto;
+}
+/* 这里把定位设置为绝对定位，top不设置，让其自动跟随页面移动，left设置值 */
+.category{
+position:absolute;
+background:#E4EBEE;
+width:10%;
+
+}
+.eachCategory{
+margin-top:20px;
+width:100%;
+}
+
+.eachCategory a{
+text-decoration:none;
+color:black;
+cursor:pointer;
+}
+.eachCategory a:hover{
+color:#E54077;
+}
+
+.subdivide{
+position:absolute;
+left:10%;
+padding:0px 20px 20px 0	px;
+/*设置宽度60%*/
+width:60%;
+}
+.eachSubdivide{
+position:absolute;
+border:1px solid #E7E7E7;
+display:none;
+min-height;30%;
+/*相对父div宽度100%*/
+width:100%;
+}
+.eachSubdivide a{
+color:#BABABA;
+text-decoration:none;
+margin:auto 5px;
+}
+.eachSubdivide a:hover{
+color:#E54077;
+}
+
+.selectBodyParent{width:100%;background:white;}
+.selectBody{overflow:auto;height:100px;width:1000px;margin:auto;}
+
+.selectTite{display:inline-block;width:10%;margin-left:2%;}
+.selectTitel1{font-size:24px;color:#FF0136;font-weight:bold;}
+.selectTitel2{font-size:14px;color:#FF6B8A;}
+
+.importMessage{display:inline-block;line-height:35px;width:50%;margin-left:15%;margin-top:30px;}
+.selectInfo{border:2px solid red;width:70%;float:left;}
+.selectInfo:focus{outline:none}
+.selectButton{border:2px solid #FF0036;font-size:16px;background:#FF0036;width:30%;float:left;}
+.buttonWord{color:white;font-size:20px;}
+
+
+.categoryTitleParent{width:100%;background:#FF0036;overflow:auto;}
+.categoryTitle{width:1000px;margin:0px auto;color:white;height:40px;}
+.categoryTitle div{float:left;width:100px;margin-top:9px;text-align:center;font-size:16px;}
+.fristCategoryTitle{background:#E22127;height:100%;margin-top:0px !important;text-align:center;}
+.fristCategoryTitle span{margin-top:9px !important;}
+</style>
+<script type="text/javascript">
+/* js控制category 和subdivide父节点div的高度*/
+function initialHeight(){
+var heightSum=0;
+var eachCategory=$(".eachCategory").each(function(){
+   heightSum=heightSum+$(this).outerHeight(true);
+});
+heightSum+=20;//让底部多出20px的高度,好看
+$(".category").css("height",heightSum+"px");
+$(".eachSubdivide").css("height",heightSum+"px");
+$(".footer_desc").css("buttom","1px");
+$(".mainbody").css("height",heightSum+"px");
+
+}
+
+
+$(document).ready(function(){
+/* 当鼠标指针移动到种类上时触发效果 */
+$(".eachCategory").mouseover(function(){
+	var cid=$(this).attr("cid");
+	$(this).css("background","white");
+	$(".eachSubdivide[cid='"+cid+"']").css("display","initial");
+	$(".eachSubdivide").each(function(){
+	if($(this).attr("cid")!=cid)
+	$(this).css("display","none");
+	else
+	{
+	$(this).css("display","initial");
+	$(this).css("margin-top","0px");
+	$(this).css("padding-top","20px");
+	$(this).css("background","white");
+	}
+	});
+	
+});
+$(".eachCategory").mouseout(function(){
+  $(this).css("background","initial");
+});
+
+$(".eachSubdivide").mouseover(function(){
+  var cid=$(this).attr("cid");
+  $(".eachSubdivide[cid='"+cid+"']").css("display","initial");
+
+});
+/* 当鼠标指针从具体明细上移动出去上时触发效果 */
+$(".eachSubdivide").mouseout(function(){
+	var cid=$(this).attr("cid");
+	$(this).css("display","none");
+	$(".eachCategory[cid='"+cid+"']").css("background","initial");
+});
+
+
+});
+
+</script>
+
+<style type="text/css">
+.selectBodyParent{width:100%;background:white;}
+.selectBody{overflow:auto;height:100px;width:1000px;margin:auto;}
+
+.selectTite{display:inline-block;width:10%;margin-left:2%;}
+.selectTitel1{font-size:24px;color:#FF0136;font-weight:bold;}
+.selectTitel2{font-size:14px;color:#FF6B8A;}
+
+.importMessage{display:inline-block;line-height:35px;width:50%;margin-left:15%;margin-top:30px;}
+.selectInfo{border:2px solid red;width:70%;float:left;}
+.selectInfo:focus{outline:none}
+.selectButton{border:2px solid #FF0036;font-size:16px;background:#FF0036;width:30%;float:left;}
+.buttonWord{color:white;font-size:20px;}
+
+
+.categoryTitleParent{width:100%;background:#FF0036;overflow:auto;}
+.categoryTitle{width:1000px;margin:0px auto;color:white;height:40px;}
+.categoryTitle div{float:left;width:100px;margin-top:9px;text-align:center;font-size:16px;}
+.fristCategoryTitle{background:#E22127;height:100%;margin-top:0px !important;text-align:center;}
+.fristCategoryTitle span{margin-top:9px !important;}
+</style>
+
+</head>
+
+
+<body onload="initialHeight()">
+<div class="wrapper">
+<div class="selectBodyParent">
+<div class="selectBody">
+<form action="fore/select" method="post" >
+<div class="selectTite">
+<span class="selectTitel1"></span><br>
+<span class="selectTitel2"></span>
+</div>
+
+<div class="importMessage">
+<input type="text" name="selectInfo" placeholder="请输入商品种类、名称"  class="selectInfo"/>
+<button type="submit" class="selectButton" ><span class="buttonWord">搜索</span></button>
+</div>
+</form>
+</div>
+</div>
+<div class="categoryTitleParent">
+<div class="categoryTitle">
+<div class="fristCategoryTitle">
+<span><span class="glyphicon glyphicon-list"></span>商品分类</span>
+</div>
+<div><span>shopping超市</span></div>
+<div><span>shopping国际</span></div>
+<div><span>shopping会员</span></div>
+<div><span>品牌街</span></div>
+<div><span>电器城</span></div>
+<div><span>海洋馆</span></div>
+<div><span>养生庭</span></div>
+<div><span>梦想远行</span></div>
+<div><span>购物狂</span></div>
+</div>
+</div>
+	<div class="mainbody">
+		<div class="category">
+		
+		<div class="eachCategory" cid="20388695-f17e-4cb2-ad26-5089b5290a15">
+		<span class="glyphicon glyphicon-link"></span>
+		<a>男装</a>
+		</div>
+		
+		<div class="eachCategory" cid="444f17c9-887d-43ae-bcfe-e433cbe49ca5">
+		<span class="glyphicon glyphicon-link"></span>
+		<a>手机数码</a>
+		</div>
+		
+		<div class="eachCategory" cid="a9115128-26f7-493d-943c-6dd0fe890948">
+		<span class="glyphicon glyphicon-link"></span>
+		<a>体育用品</a>
+		</div>
+		
+		<div class="eachCategory" cid="b33c14d1-36ab-4e69-be4a-64fa37a7940e">
+		<span class="glyphicon glyphicon-link"></span>
+		<a>生鲜水果</a>
+		</div>
+		
+		<div class="eachCategory" cid="cbc46aad-7297-4423-a7ed-232980464dff">
+		<span class="glyphicon glyphicon-link"></span>
+		<a>图书影音</a>
+		</div>
+		
+		<div class="eachCategory" cid="f3db3302-924d-4844-b5d7-ff00ff17b705">
+		<span class="glyphicon glyphicon-link"></span>
+		<a>食品</a>
+		</div>
+		
+		</div>
+		<div class="subdivide">
+		
+		<div class="eachSubdivide" cid="20388695-f17e-4cb2-ad26-5089b5290a15">
+		
+		<a href="fore/showProducts/9b653849-1bfc-4abd-8851-c61296ef3dff" target="_blank">夏季新品</a>
+		
+		<a href="fore/showProducts/1e4e5bb6-b451-4e7c-a4fc-da78712041b2" target="_blank">商场同款</a>
+		
+		<a href="fore/showProducts/5c4ee2d2-eb79-4af8-83fe-588e3dc69ff6" target="_blank">短袖T袖</a>
+		
+		<a href="fore/showProducts/15cf01ab-6905-46f8-81d7-e79fa72d58d9" target="_blank">POLO衫</a>
+		
+		<a href="fore/showProducts/9f5b55cc-b710-4d1a-a98e-27e87c5b65e4" target="_blank">棉麻质感</a>
+		
+		<a href="fore/showProducts/db1e78a8-7f2c-476a-a1c4-5e5fb2a39390" target="_blank">跑步鞋</a>
+		
+		<a href="fore/showProducts/384951cb-2bb3-4948-9d36-c8116e8f1f6a" target="_blank">篮球鞋</a>
+		
+		</div>
+		
+		<div class="eachSubdivide" cid="444f17c9-887d-43ae-bcfe-e433cbe49ca5">
+		
+		<a href="fore/showProducts/f06e64a2-678d-44b3-adc5-d0d4078c41b1" target="_blank">小米</a>
+		
+		<a href="fore/showProducts/082e7a15-b3d3-49b0-b8b4-146672df3b48" target="_blank">iphone</a>
+		
+		<a href="fore/showProducts/7a3c288e-021c-40b1-86d9-3e5a4f9776d4" target="_blank">魅族</a>
+		
+		<a href="fore/showProducts/3f3b31f9-7227-4479-97b6-66e58e6cfe8c" target="_blank">荣耀</a>
+		
+		<a href="fore/showProducts/d10a7794-f9b5-4e8a-a9bf-04a1e8a649b6" target="_blank">三星</a>
+		
+		<a href="fore/showProducts/2693c263-0ef7-4d15-9ce0-854147c46fb0" target="_blank">OPPO</a>
+		
+		</div>
+		
+		<div class="eachSubdivide" cid="a9115128-26f7-493d-943c-6dd0fe890948">
+		
+		<a href="fore/showProducts/36bd55a6-df93-4c99-b849-ae5dcb5489f3" target="_blank">羽毛球拍</a>
+		
+		<a href="fore/showProducts/2c25e3ad-001c-474d-8a93-b76ca9ade1fa" target="_blank">羽毛球</a>
+		
+		<a href="fore/showProducts/10d8a2cb-ba0b-4d01-9e4d-a1d7e19c6d3b" target="_blank">篮球</a>
+		
+		<a href="fore/showProducts/cad39189-9c17-46d2-8123-e76548dd88e9" target="_blank">足球</a>
+		
+		<a href="fore/showProducts/5535c219-83f6-4758-b1d0-29351ee5c795" target="_blank">乒乓球</a>
+		
+		<a href="fore/showProducts/4f22de21-b932-432c-bb3e-e9a8390b4279" target="_blank">哑铃</a>
+		
+		</div>
+		
+		<div class="eachSubdivide" cid="b33c14d1-36ab-4e69-be4a-64fa37a7940e">
+		
+		<a href="fore/showProducts/46675729-8203-409c-b035-ed4cfe111c8d" target="_blank">土豆</a>
+		
+		<a href="fore/showProducts/b3e120f3-e309-44ef-a1a1-7048502485ae" target="_blank">番茄</a>
+		
+		<a href="fore/showProducts/4cbf5e92-51c4-4628-911a-33b6d8905b6c" target="_blank">莲藕</a>
+		
+		<a href="fore/showProducts/ba61c2d0-314a-49ba-8c4c-907643145d36" target="_blank">玉米</a>
+		
+		<a href="fore/showProducts/77945ccd-23b6-4ddc-a609-50ace5a81378" target="_blank">秋葵</a>
+		
+		<a href="fore/showProducts/06aa27f3-03e8-4eb8-a1c6-ecad0a1e6449" target="_blank">鸡蛋</a>
+		
+		<a href="fore/showProducts/fef1c5ce-f9b3-4f3e-b9a7-7ed37fea8e80" target="_blank">鸭蛋</a>
+		
+		<a href="fore/showProducts/1bb48a0f-875b-486c-b8be-84eabc57dad6" target="_blank">鹅蛋</a>
+		
+		<a href="fore/showProducts/4bc57cdf-ab83-449c-84a8-06297bcdd26d" target="_blank">鸽子蛋</a>
+		
+		<a href="fore/showProducts/b6101842-6f05-40e4-a404-000a23fc03bd" target="_blank">松花皮蛋</a>
+		
+		</div>
+		
+		<div class="eachSubdivide" cid="cbc46aad-7297-4423-a7ed-232980464dff">
+		
+		<a href="fore/showProducts/cb96033d-1a77-4bb1-b420-ce13a32cdba3" target="_blank">管理学</a>
+		
+		<a href="fore/showProducts/2a994fde-e1f9-408d-8e81-711fceca2762" target="_blank">金融与投资</a>
+		
+		<a href="fore/showProducts/dfad094f-0ec4-4093-8fb2-ffbaee35696f" target="_blank">历史文学</a>
+		
+		<a href="fore/showProducts/1db72cdb-4216-47ab-87fd-860a6a07bb0c" target="_blank">原版小说</a>
+		
+		<a href="fore/showProducts/933040ad-6c64-4ce1-a215-3995829cfb77" target="_blank">历史</a>
+		
+		</div>
+		
+		<div class="eachSubdivide" cid="f3db3302-924d-4844-b5d7-ff00ff17b705">
+		
+		<a href="fore/showProducts/1bea4ec6-1c23-4aa7-bdff-ccb1e48abc7b" target="_blank">牛奶</a>
+		
+		<a href="fore/showProducts/f3de78b4-2d3c-4e78-a81b-34e241c022fe" target="_blank">面包</a>
+		
+		<a href="fore/showProducts/8bdf5830-e6f7-46a8-a4c0-b5d4254f5734" target="_blank">生鲜</a>
+		
+		<a href="fore/showProducts/e9414e8c-1a33-4549-aa92-37facd55c452" target="_blank">水果</a>
+		
+		</div>
+		
+		</div>
+	</div>
+</div>
+</body>
+</html>
+
+<style>
+/*这个CSS保持页脚始终保持在页面底部*/
+body,html{
+height:100%;
+}
+.wrapper{
+min-height: 80%;
+height: auto !important;
+height: 100%;
+}
+
+
+div.footer_desc{
+border-top-style: solid ;
+border-top-width: 1px;
+border-bottom-width:1px;
+border-top-color: #e7e7e7;
+position:static;
+width:100%;
+overflow: auto;
+}
+
+div.footer_desc div.descColumn{
+width:30%;
+float:left;
+padding-left:15px;
+}
+/* 每个DIV宽度30%，这里设置左边距10%，让布局看起来居中 */
+div.fristDescColumn{
+margin-left:10%;
+}
+div.footer_desc div.descColumn a{
+display:block;
+padding-top:3px;
+
+}
+.descColumn a{
+color:#999;
+}
+.descColumn a:hover{
+text-decoration:none;
+color:#C40000;
+}
+
+</style>
+<div style="clear:both"></div>
+<div class="footer_desc">
+<div class="descColumn fristDescColumn">
+<span>购物指南</span>
+<a href="">注册</a>
+<a href="">收货地址</a>
+<a href="">开通支付宝</a>
+</div>
+
+<div class="descColumn">
+<span>支付方式</span>
+<a href="">信用卡</a>
+<a href="">支付宝</a>
+<a href="">蚂蚁花呗</a>
+</div>
+
+<div class="descColumn">
+<span>商家服务</span>
+<a href="">商家入驻</a>
+<a href="">物流服务</a>
+<a href="">运营服务</a>
+</div>
+
+</div>
+</html>

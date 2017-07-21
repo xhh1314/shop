@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="shop.dao.CategoryDao">
+
+	<resultMap type="shop.bean.Category" id="categorySubdivide">
+		<result column="ctuuid" property="uuid" />
+		<result column="ctname" property="name" />
+		<result column="ctdescription" property="description" />
+		<collection property="subdivide" ofType="shop.bean.Subdivide"
+			javaType="ArrayList" >
+			<id column="sbuuid" property="uuid" />
+			<result column="sbname" property="name" />
+			<result column="sbdescription" property="description" />
+		</collection>
+
+	</resultMap>
+	<!-- 根据uuid查询category -->
+	<select id="selectById" parameterType="string" resultType="shop.bean.Category">
+		select uuid,name,description from category where uuid=#{uuid}
+		<!-- <where> <if test="uuid !=null"> uuid=#{uuid} </if> </where> -->
+	</select>
+	<!-- 查询所有的结果 -->
+	<select id="findAll" resultMap="categorySubdivide">
+		select category.uuid as ctuuid,
+		category.name as ctname,
+		category.description as ctdescription,
+		subdivide.uuid as sbuuid,
+		subdivide.name as sbname,
+		subdivide.description as sbdecription
+		from category left join subdivide on category.uuid=subdivide.ct_uuid
+	</select>
+
+	<!-- 插入 -->
+	<insert id="insertCategory" parameterType="shop.bean.Category">
+		insert into category(uuid,name,description) values
+		(#{uuid},#{name},#{description})
+	</insert>
+	<!-- 更新 -->
+	<update id="updateCategory" parameterType="shop.bean.Category">
+		update category set name=#{name},description=#{description} where
+		uuid=#{uuid}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteCategory" parameterType="string">
+		delete from category where uuid=#{uuid}
+	</delete>
+
+
+
+</mapper>
+
+

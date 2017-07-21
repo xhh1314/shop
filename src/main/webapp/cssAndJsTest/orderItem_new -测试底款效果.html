@@ -1,0 +1,218 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 引入bootstrap文件 和jquery -->
+<script type="text/javascript" src="static/js/jquery-3.1.0.js"></script>
+<link rel="stylesheet" href="static/js/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="static/js/bootstrap/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+nav.top a:hover{
+color: #C40000;
+text-decoration: none;
+}
+nav.top{
+background-color: #f2f2f2;
+padding-top: 5px;
+padding-bottom: 5px;
+border-bottom: 1px solid ;
+}
+nav.top a{
+color:#999999;
+}
+.glyphicon-home {
+color:#FF0036;
+}
+.glyphicon-shopping-cart{
+color:#FF0036;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	//如果用户已经登录，则隐藏登录注册菜单,未登录则隐藏注销菜单
+	if($("#username").text().length>0)
+		{
+		$("#loginTitle").hide();
+		$("#registerTitle").hide();
+		}else{
+			$("#logout").hide();
+		}
+
+//如果购物车数量为空，则默认显示为0件
+  if($("strong").text()=="" || $("strong")==undefined)
+	  $("strong").text("0");
+	
+});
+</script>
+<nav class="top">
+<a href="fore/index">
+购物首页
+<span class="glyphicon glyphicon-home redColor"></span>
+</a>
+<span>欢迎</span><span id="username"></span>
+<a id="loginTitle" href="user/login">请登录</a>
+<a id="registerTitle" href="user/register">注册</a>
+<span class="pull-right">
+<a href="">我的订单</a>
+<span class="glyphicon glyphicon-shopping-cart redColor"></span>
+<a href="forePermission/showCart">购物车 <strong></strong>件</a>
+<a id="logout" href="user/logout">注销</a>
+</span>
+</nav>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div.productView{
+position:relative;
+top:0px;
+left:5%;
+}
+div.productView div.eachProduct{
+
+width:15%;
+padding:1%;
+float:left;
+}
+div.eachProduct img{
+width:100%;
+height:auto;
+}
+
+ div.eachProduct .price{
+ font-size: 16px;
+ color:red;
+ }
+ 
+  div.eachProduct .productName{
+ 
+ }
+</style>
+
+</head>
+<body class="productViewBody">
+<div class="wrapper">
+	<div class="productView">
+	
+
+		<div class="eachProduct">
+		
+		<a href="fore/showProduct/005e2984-644d-4d1b-9878-f36cb52541e6"><img src="static/image/9/0/07184103-d9cf-493e-b378-3f10eb94b0c4_双刃10.jpg"></a><br>
+		
+		<a class="price">1000.0</a><br><a class="productName" href="fore/showProduct/005e2984-644d-4d1b-9878-f36cb52541e6">双刃10</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="fore/showProduct/59620499-b239-4cfb-bb8f-870c1025541c"><img src="static/image/2/10/74d1add4-331e-494a-a046-f622964516f6_vctory.jpg"></a><br>
+		
+		<a class="price">700.0</a><br><a class="productName" href="fore/showProduct/59620499-b239-4cfb-bb8f-870c1025541c">victor胜利羽毛球拍纳米7/6鬼斩tk30女士单拍7SP/15极速JS08</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="fore/showProduct/07ba9a20-a7bd-45a3-acff-c5b27d6cfa61"><img src="static/image/8/13/34bd878f-8544-40be-8368-84fc0626cd57_正品尤尼克斯羽毛球拍yy进攻型VTLD F ZF2LD 双刃10LCW 弓箭ARC11.jpg"></a><br>
+		
+		<a class="price">1888.0</a><br><a class="productName" href="fore/showProduct/07ba9a20-a7bd-45a3-acff-c5b27d6cfa61">弓箭ARC11</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="fore/showProduct/8b6e6f52-41c7-4c8e-83b2-64e7829df0d1"><img src="static/image/5/0/bcf32576-e5e4-41b8-824b-0f470905c228_李宁N90.jpg"></a><br>
+		
+		<a class="price">990.0</a><br><a class="productName" href="fore/showProduct/8b6e6f52-41c7-4c8e-83b2-64e7829df0d1">李宁羽毛球拍80TD正品 N90全碳素高端</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="fore/showProduct/cdc30500-ca86-432f-9373-4c93cf2a5193"><img src="static/image/8/7/4a0ee890-0853-41d3-aad5-e4c276deb8cb_李宁国家队同款.jpg"></a><br>
+		
+		<a class="price">1480.0</a><br><a class="productName" href="fore/showProduct/cdc30500-ca86-432f-9373-4c93cf2a5193">包顺丰李宁羽毛球拍正品国家队谌龙战拍N90/N99/n9二代/N55/N50</a>
+		</div>
+
+
+</div>
+</div>
+</body>
+</html>
+
+<style>
+/*这个CSS保持页脚始终保持在页面底部*/
+body,html{
+height:100%;
+}
+.wrapper{
+min-height: 80%;
+height: auto !important;
+height: 100%;
+}
+
+
+div.footer_desc{
+border-top-style: solid ;
+border-top-width: 1px;
+border-bottom-width:1px;
+border-top-color: #e7e7e7;
+position:absolute;
+width:100%;
+}
+
+div.footer_desc div.descColumn{
+width:30%;
+float:left;
+padding-left:15px;
+}
+/* 每个DIV宽度30%，这里设置左边距10%，让布局看起来居中 */
+div.fristDescColumn{
+margin-left:10%;
+}
+div.footer_desc div.descColumn a{
+display:block;
+padding-top:3px;
+
+}
+.descColumn a{
+color:#999;
+}
+.descColumn a:hover{
+text-decoration:none;
+color:#C40000;
+}
+
+</style>
+<div style="clear:both"></div>
+<div class="footer_desc">
+<div class="descColumn fristDescColumn">
+<span>购物指南</span>
+<a href="">注册</a>
+<a href="">收货地址</a>
+<a href="">开通支付宝</a>
+</div>
+
+<div class="descColumn">
+<span>支付方式</span>
+<a href="">信用卡</a>
+<a href="">支付宝</a>
+<a href="">蚂蚁花呗</a>
+</div>
+
+<div class="descColumn">
+<span>商家服务</span>
+<a href="">商家入驻</a>
+<a href="">物流服务</a>
+<a href="">运营服务</a>
+</div>
+
+</div>
+</html>

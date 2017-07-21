@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="shop.dao.PropertyDao">
+
+<resultMap type="shop.bean.Property" id="PropertySubdivide">
+<id column="uuid" property="uuid"/>
+<result column="name" property="name"/>
+<association property="subdivide" javaType="shop.bean.Subdivide" column="sb_uuid">
+<id column="subdivide_uuid" property="uuid"/>
+<result column="subdivide_name" property="name"/>
+<result column="description" property="description"/>
+</association>
+
+</resultMap>
+<!-- 查询一条记录 -->
+<select id="selectById" parameterType="string" resultMap="PropertySubdivide">
+select property.uuid,property.name,property.ct_uuid,
+subdivide.uuid as subdivide_uuid,
+subdivide.name as subdivide_name,
+subdivide.description
+from property,subdivide 
+<where>
+property.sb_uuid=subdivide.uuid
+<if test="uuid !=null" >
+and property.uuid=#{uuid}
+</if>
+</where>
+</select>
+
+<!--查询所有记录-->
+<select id="findAll" resultMap="PropertySubdivide">
+select property.uuid,property.name,
+subdivide.uuid as subdivide_uuid,
+subdivide.name as subdivide_name,
+subdivide.description
+from property,subdivide 
+where property.sb_uuid=subdivide.uuid
+</select>
+
+<select id="findBySubdivide" parameterType="string" resultType="shop.bean.Property" >
+select property.uuid,property.name from property where sb_uuid=#{uuid}
+</select>
+
+<!-- 插入数据 -->
+<insert id="insert"  parameterType="shop.bean.Property">
+insert into property (uuid,name,sb_uuid) values(#{uuid},#{name},#{subdivide.uuid})
+</insert>
+
+
+</mapper>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<!-- 引入bootstrap文件 和jquery -->
+<script type="text/javascript" src="static/js/jquery-3.1.0.js"></script>
+<link rel="stylesheet" href="static/js/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="static/js/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<style>
+.categoryWithCarousel{
+width:100%;
+position:relative;
+top:0px;
+left:0px;
+}
+
+div.categoryWithCarousel div.headbar{
+width:100%;
+height:20%;
+background-color:#DD2727;
+}
+
+div.head{
+background-color:#C60A0A;
+width:200px;
+height:36px;
+line-height:36px;
+font:size:16px;
+font-weight:bold;
+color:white;
+margin-left:20px;
+display:inline-block;
+}
+
+div.rightMenu{
+display:inline-block;
+margin-left:10px;
+}
+div.rightMenu a{
+font-size:16px;
+color:white;
+text-decoration:none;
+}
+div.rightMenu span{
+margin:0px 20px 0px 20px;
+}
+
+div.rightMenu img{
+height:40px;
+}
+div.carousel-of-product{
+height:50%;
+width:60%;
+margin:0px auto;
+background-color:#E8E8E8;
+}
+
+img.carouselImage{
+height:60%; !important;
+width:auto;
+margin:0% auto;
+}
+.carouselBackgroundDiv1{
+width:100%;
+height:410px;
+<!--background-color:#E8E8E8;-->
+background-color:black;
+position:absolute;
+z-index:-1;
+}
+</style>
+
+<style>
+.categoryMenu{
+width:15%;
+height:100%;
+background-color:#e2e2e3;
+margin-left:20px;
+padding:20px auto;
+position:absolute;
+z-index:1;
+}
+.categoryMenu a{
+color: #000;
+}
+.categoryMenu a:hover{
+color:lightskyblue;
+text-decoration:none;
+}
+
+.eachCategory{
+padding-left:10px;
+margin-top:5px;
+}
+
+.eachCategory span{
+margin-right:1%;
+font-size:16px;
+}
+
+.eachCategory:hover{
+background-color:white;
+}
+.categoryMenuParent{
+height:410px;
+top:0
+left:10px;
+}
+
+.productsAsideCategorysParent{
+position:relative;
+top:-420px;
+max-height:50%;
+
+}
+.productsAsideCategorys{
+
+width:60%;
+max-height:50%;
+background-color:white;
+margin-left:15%;
+position:absolute;
+z-index:-1;
+}
+.productsAsideCategorys div.row{
+margin:20px 80px 0px 80px;
+}
+
+div.productsAsideCategorys div.row div.seperator{
+border-bottom-style:dashed;
+border-bottom-width:1px;
+border-bottom-color:#e7e7e7;
+margin-top:20px;
+}
+
+.productsAsideCategorys a{
+color:#999;
+font-size:14px;
+margin:8px;
+
+}
+.productsAsideCategorys a:hover{
+color:#C40000;
+text-decoration:none;
+}
+</style>
+<script>
+function showProductsAsideCategorys(cid){
+    $("div.eachCategory[cid="+cid+"]").css("background-color","white");
+    $("div.eachCategory[cid="+cid+"] a").css("color","#87CEFA");
+	 $("div.eachCategory[cid="+cid+"]").css("z-index","1");
+    $("div.productsAsideCategorys[cid="+cid+"]").show();
+}
+ 
+function hideProductsAsideCategorys(cid){
+    $("div.eachCategory[cid="+cid+"]").css("background-color","#e2e2e3");
+    $("div.eachCategory[cid="+cid+"] a").css("color","#000");
+    $("div.productsAsideCategorys[cid="+cid+"]").hide();
+}
+
+function showCategory(cid){
+$(".productsAsideCategorys[cid="+cid+"]").show();
+}
+function hidenCategory(cid){
+$(".productsAsideCategorys[cid="+cid+"]").hide();
+}
+
+$(function(){
+$("div.eachCategory").mouseenter(function(){
+        var cid = $(this).attr("cid");
+        showProductsAsideCategorys(cid);
+    });
+    $("div.eachCategory").mouseleave(function(){
+        var cid = $(this).attr("cid");
+        hideProductsAsideCategorys(cid);
+    });
+
+$("#productsAsideCategorys").mouseenter(function(){
+showProductsAsideCategorys($(this).attr("cid"));
+});
+$("#productsAsideCategorys").mouseleave(function(){
+hideProductsAsideCategorys($(this).attr("cid"));
+});
+
+
+});
+
+</script>
+<body style="height:400%;">
+<div class="categoryWithCarousel">
+<div class="headbar">
+
+    <div class="head ">
+        <span class="glyphicon glyphicon-th-list" style="margin-left:10px"></span>
+        <span style="margin-left:10px">商品分类</span>
+    </div>
+    <div class="rightMenu">
+        <span><a href="#nowhere"><img src="http://how2j.cn/tmall/img/site/chaoshi.png"></a></span>
+        <span><a href="#nowhere"><img src="http://how2j.cn/tmall/img/site/guoji.png"></a></span>
+                <span>
+                <a href="#nowhere">
+                    平板电视
+                </a></span>         
+                <span>
+                <a href="#nowhere">
+                    电热水器
+                </a></span>         
+    </div>
+</div>
+<div>
+<div class="categoryMenu">
+            <div class="eachCategory" cid="83">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    平板电视
+                </a>
+            </div>
+            <div class="eachCategory" cid="82">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    马桶
+                </a>
+            </div>
+            <div class="eachCategory" cid="81">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    沙发
+                </a>
+            </div>
+            <div class="eachCategory" cid="80">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    电热水器
+                </a>
+            </div>
+            <div class="eachCategory" cid="79">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    平衡车
+                </a>
+            </div>
+            <div class="eachCategory" cid="78">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    扫地机器人 
+                </a>
+            </div>
+            <div class="eachCategory" cid="77">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    原汁机
+                </a>
+            </div>
+            <div class="eachCategory" cid="76">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    冰箱
+                </a>
+            </div>
+            <div class="eachCategory" cid="75">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    空调
+                </a>
+            </div>
+            <div class="eachCategory" cid="74">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    女表
+                </a>
+            </div>
+            <div class="eachCategory" cid="73">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    男表
+                </a>
+            </div>
+            <div class="eachCategory" cid="72">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    男士手拿包 
+                </a>
+            </div>
+            <div class="eachCategory" cid="71">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    男士西服
+                </a>
+            </div>
+            <div class="eachCategory" cid="69">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    时尚男鞋
+                </a>
+            </div>
+            <div class="eachCategory" cid="68">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    品牌女装
+                </a>
+            </div>
+            <div class="eachCategory" cid="64">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    太阳镜
+                </a>
+            </div>
+            <div class="eachCategory" cid="60">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">
+                    安全座椅
+                </a>
+            </div>
+    </div>  
+</div>
+
+<div data-ride="carousel" class="carousel-of-product carousel slide" id="carousel-of-product">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li class="active" data-slide-to="0" data-target="#carousel-of-product"></li>
+    <li data-slide-to="1" data-target="#carousel-of-product" class=""></li>
+    <li data-slide-to="2" data-target="#carousel-of-product" class=""></li>
+    <li data-slide-to="3" data-target="#carousel-of-product" class=""></li>
+  </ol>
+  <!-- Wrapper for slides -->
+  <div role="listbox" class="carousel-inner">
+    <div class="item active">
+      <img src="http://how2j.cn/tmall/img/lunbo/1.jpg" class="carousel carouselImage">
+    </div>
+    <div class="item">
+      <img src="http://how2j.cn/tmall/img/lunbo/2.jpg" class="carouselImage">
+    </div>
+    <div class="item">
+        <img src="http://how2j.cn/tmall/img/lunbo/3.jpg" class="carouselImage">
+    </div>
+    <div class="item">
+        <img src="http://how2j.cn/tmall/img/lunbo/4.jpg" class="carouselImage">
+    </div>
+  </div>
+</div>  
+    <div class="carouselBackgroundDiv">
+</div>  
+
+
+
+<div style="position: relative;left: 0;top: -410px;z-index=1;"  class="productsAsideCategorysParent">
+    <div class="productsAsideCategorys" cid="83">
+            <div class="row ">
+                        <a href="#nowhere">
+                                    屏大影院
+                        </a>
+                        <a href="#nowhere">
+                                    周末
+                        </a>
+                        <a href="#nowhere">
+                                    新品特惠
+                        </a>
+                        <a href="#nowhere">
+                                    32吋电视机
+                        </a>
+                        <a href="#nowhere">
+                                    智能网络
+                        </a>
+                <div class="seperator"></div>
+            </div>        
+            <div class="row ">
+                        <a href="#nowhere">
+                                    USB高清解
+                        </a>
+                        <a href="#nowhere">
+                                    芒果TV在线
+                        </a>
+                        <a href="#nowhere">
+                                    抢购价
+                        </a>
+                        <a href="#nowhere">
+                                    USB解码
+                        </a>
+                        <a href="#nowhere">
+                                    32英吋
+                        </a>
+                        <a href="#nowhere">
+                                    10核
+                        </a>
+                        <a href="#nowhere">
+                                    TCL品牌日
+                        </a>
+                <div class="seperator"></div>
+            </div>        
+            <div class="row ">
+                        <a href="#nowhere">
+                                    不要赠品
+                        </a>
+                        <a href="#nowhere">
+                                    新品上市
+                        </a>
+                        <a href="#nowhere">
+                                    4K硬屏
+                        </a>
+                        <a href="#nowhere">
+                                    领100元券
+                        </a>
+                        <a href="#nowhere" style="color: rgb(135, 206, 250);">
+                                    智能高清
+                        </a>
+                        <a href="#nowhere">
+                                    8月，酷暑
+                        </a>
+                        <a href="#nowhere" style="color: rgb(135, 206, 250);">
+                                    8月大促
+                        </a>
+                        <a href="#nowhere">
+                                    天猫定制
+                        </a>
+                <div class="seperator"></div>
+            </div>        
+            <div class="row ">
+                        <a href="#nowhere">
+                                    智能操作系统
+                        </a>
+                        <a href="#nowhere">
+                                    金色外观
+                        </a>
+                        <a href="#nowhere">
+                                    三星屏幕
+                        </a>
+                        <a href="#nowhere">
+                                    客厅爆款
+                        </a>
+                        <a href="#nowhere">
+                                    八核配置
+                        </a>
+                        <a href="#nowhere">
+                                    限时特惠
+                        </a>
+                <div class="seperator"></div>
+            </div>        
+            <div class="row ">
+                        <a href="#nowhere">
+                                    限时特惠
+                        </a>
+                        <a href="#nowhere">
+                                    热销爆款
+                        </a>
+                        <a href="#nowhere">
+                                    4K全高清
+                        </a>
+                        <a href="#nowhere" style="color: rgb(135, 206, 250);">
+                                    六核智能
+                        </a>
+                        <a href="#nowhere">
+                                    14核4K
+                        </a>
+                        <a href="#nowhere">
+                                    YUNOS
+                        </a>
+                        <a href="#nowhere" style="color: rgb(135, 206, 250);">
+                                    YUNOS
+                        </a>
+                        <a href="#nowhere">
+                                    64位处理器
+                        </a>
+                <div class="seperator"></div>
+            </div>        
+            <div class="row ">
+                        <a href="#nowhere">
+                                    YUNOS
+                        </a>
+                        <a href="#nowhere">
+                                    微信电视
+                        </a>
+                        <a href="#nowhere">
+                                    4k超清
+                        </a>
+                        <a href="#nowhere">
+                                    64位真4K
+                        </a>
+                        <a href="#nowhere">
+                                    10核机芯
+                        </a>
+                        <a href="#nowhere">
+                                    V字黑釉底座
+                        </a>
+                        <a href="#nowhere">
+                                    4K超清
+                        </a>
+                <div class="seperator"></div>
+            </div>        
+            <div class="row ">
+                        <a href="#nowhere">
+                                    64位14核
+                        </a>
+                        <a href="#nowhere">
+                                    海量影视
+                        </a>
+                        <a href="#nowhere">
+                                    人气爆款
+                        </a>
+                        <a href="#nowhere">
+                                    限时特惠
+                        </a>
+                        <a href="#nowhere">
+                                    真4K屏
+                        </a>
+                        <a href="#nowhere">
+                                    65吋巨屏
+                        </a>
+                        <a href="#nowhere" style="color: rgb(135, 206, 250);">
+                                    4K超清视界
+                        </a>
+                        <a href="#nowhere">
+                                    限时特惠
+                        </a>
+                <div class="seperator"></div>
+            </div>        
+            <div class="row ">
+                        <a href="#nowhere">
+                                    55寸旗舰
+                        </a>
+                        <a href="#nowhere">
+                                    4K机皇
+                        </a>
+                        <a href="#nowhere">
+                                    曲面机皇
+                        </a>
+                        <a href="#nowhere" style="color: rgb(135, 206, 250);">
+                                    轻薄4K
+                        </a>
+                <div class="seperator"></div>
+            </div>    
+</div>            
+</div>    
+        <div style="height:510;width:100%;background-color:red;" ></div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

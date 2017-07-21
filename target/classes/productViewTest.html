@@ -1,0 +1,513 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 引入bootstrap文件 和jquery -->
+<script type="text/javascript" src="static/js/jquery-3.1.0.js"></script>
+<link rel="stylesheet" href="static/js/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="static/js/bootstrap/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+nav.top a:hover{
+color: #C40000;
+text-decoration: none;
+}
+nav.top{
+background-color: #f2f2f2;
+padding-top: 5px;
+padding-bottom: 5px;
+border-bottom: 1px solid ;
+}
+nav.top a{
+color:#999999;
+}
+.glyphicon-home {
+color:#FF0036;
+}
+.glyphicon-shopping-cart{
+color:#FF0036;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	//如果用户已经登录，则隐藏登录注册菜单,未登录则隐藏注销菜单
+	if($("#username").text().length>0)
+		{
+		$("#loginTitle").hide();
+		$("#registerTitle").hide();
+		}else{
+			$("#logout").hide();
+		}
+
+//如果购物车数量为空，则默认显示为0件
+  if($("strong").text()=="" || $("strong")==undefined)
+	  $("strong").text("0");
+	
+});
+</script>
+<nav class="top">
+<a href="fore/index">
+购物首页
+<span class="glyphicon glyphicon-home redColor"></span>
+</a>
+<span>欢迎</span><span id="username">李浩</span>
+<a id="loginTitle" href="user/login">请登录</a>
+<a id="registerTitle" href="user/register">注册</a>
+<span class="pull-right">
+<a href="">我的订单</a>
+<span class="glyphicon glyphicon-shopping-cart redColor"></span>
+<a href="forePermission/showCart">购物车 <strong>3</strong>件</a>
+<a id="logout" href="user/logout">注销</a>
+</span>
+</nav>
+
+
+    
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 引入bootstrap文件 和jquery -->
+<script type="text/javascript" src="static/js/jquery-3.1.0.js"></script>
+<link rel="stylesheet" href="static/js/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="static/js/bootstrap/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+.productImage{
+float:left;
+margin-left:5%;
+margin-top:1%;
+width:20%;
+height:30%;
+padding:0px auto;
+border:1px solid ;
+}
+.productImage img{
+margin:0px auto;
+}
+.infoandinfo{
+float:left;
+margin-top:1%;
+margin-left:2%;
+border:1px solid ;
+}
+.productTitle{
+font-size:24px;
+}
+.priceWrap{
+background:#ECEBEB;
+}
+.producSubTitle{
+font-size:12px;
+}
+.productPrice{
+font-size:12px;
+margin:10px auto;
+margin-bottom:10px;
+}
+
+.originalPriceDesc{
+margin-left:5px;
+}
+.originalPriceYuan{
+margin-left:10px;
+font-size:16px;
+}
+.originalPrice{
+font-size:16px;
+text-decoration: line-through;
+}
+
+.promotePriceDesc{
+margin-left:5px;
+}
+.promotePriceYuan{
+margin-left:10px;
+color:red;
+font-size:16px;
+}
+.promoteProce{
+color:red;
+font-size:32px;
+}
+.productSaleAndReviewNumber{
+margin-bottom:10px;
+}
+.productSaleAndReviewNumber div{
+display:inline-block;
+text-align:center;
+margin:0px 10px;
+}
+.productSale{
+margin-left:5px;
+}
+
+.productSaleAndReviewNumber .productSaleNumber{
+margin-left:5px;
+color:red;
+font-size:16px;
+}
+.productSaleAndReviewNumber .productReviewNumber{
+margin-left:5px;
+margin-right:5px;
+color:red;
+font-size:16px;
+}
+
+.numberSetting{
+width:30px;
+}
+.productNumber{
+border:1px solid;
+}
+.productNumberSettingSpan{
+border:0px solid;
+display:inline-block;
+width:40px;
+padding-right:10px;
+}
+span.updown img{
+    display:inline-block;
+    vertical-align:top;
+}
+span.updown{
+    border: 1px solid #999;
+    display: block;
+    width: 20px;
+    height: 14px;
+    text-align: center;
+    padding-top:4px;
+}
+.arrow{
+top:5px;
+border:0px solid;
+display:inline-block;
+}
+.buyDiv{
+margin-top:10px;
+}
+.buyDiv a{
+display:inline-block;
+width:30%;
+float:right;
+margin:0px 10px;
+border:1px solid red;
+background:#FFEDED;
+}
+
+.addCartButton{
+width:100%;
+background:#FF0036;
+border:none;
+
+}
+.buyButton{
+width:100%;
+background:#FFEDED;
+border:none;
+}
+.buyButton span{
+color:red;
+font-size:20px;
+}
+.addCartButton span{
+color:white;
+font-size:20px;
+}
+
+.productDetails{
+position:relative;
+margin-top:2%;
+margin-left:26%;
+border:1px solid black;
+width:50%;
+}
+
+.detailHead{
+border:1px solid red;
+width:100%;
+}
+
+.detailHead a{
+margin-left:10px;
+display:inline-block;
+border:1px solid;
+width:10%;
+line-height:50px;
+
+}
+.productParameter{
+margin:10px;
+}
+.productParameterList{
+border:1px solid red;
+width:100%;
+height:40%;
+*zoom:1;
+}
+.productParameterList span{
+display:block;
+margin:10px;
+}
+.productParameterList:after{
+content:"\200B"; display:block; height:0; clear:both;
+}
+</style>
+
+<script type="text/javascript">
+var stock=20;
+$(document).ready(function(){
+//增加数量操作
+$("#increaseNumber").click(function(){
+	var num=$("#number").val();
+	if(num<stock)
+		num++;
+	else
+		num=stock;
+	$("#number").val(num);
+});
+//减少数量操作
+$("#decreaseNumber").click(function(){
+	var num=$("#number").val();
+	if (num==1){
+		num=1;
+	}
+	else
+		num--;
+	$("#number").val(num);
+});
+
+
+//提交加入购物车操作
+$(".addCartButton").click(function(){
+	var cartNum=$("strong").text();
+	var cartNum=parseInt(cartNum, 0);
+	$(".addCartButton").html("已加入购物车");
+				$(".addCartButton").attr("disabled","disabled");
+				$(".addCartButton").css("background-color","lightgray");
+				$(".addCartButton").css("color","black");
+				$(".addCartButton").css("font-size","20px");
+	$.ajax({
+		url:"forePermission/addCart",
+		method:"post",
+		data:{"product_uuid":"59620499-b239-4cfb-bb8f-870c1025541c","number":$("#number").val()},
+		dataType:"text",
+		success:function(result){
+			if(result=="isAjax"){//如果未登录，该ajax请求会被拦截，这里收到消息后跳转到登录页面
+				window.location.href="user/login?previousUri=fore/showProduct/59620499-b239-4cfb-bb8f-870c1025541c";
+				return;
+			}
+			if(result=="success"){
+				$(".addCartButton").html("已加入购物车");
+				$(".addCartButton").attr("disabled","disabled");
+				$(".addCartButton").css("background-color","lightgray");
+				$(".addCartButton").css("color","black");
+				cartNum++;
+				$("strong").text(cartNum);
+			}
+			else{
+				alert("加入购物车失败！");
+			}
+		}
+	});
+});
+
+//提交立即购买操作
+$(".buyButton").click(function(){
+	var number=$("#number").val();
+	var flag=false;
+	//ajax访问后台，查询用户是否登录，已登录则返回true
+		$.ajax({
+			url:"user/userExist",
+			method:"post",
+			data:"",
+			success:function(data){
+				if(data=="yes"){
+					flag=true;
+					window.location.assign("forePermission/addImmidiateCart?product_uuid=59620499-b239-4cfb-bb8f-870c1025541c&number="+number);
+				}
+				if(data=="no"){
+					flag=false;
+					var previousUri="forePermission/addImmidiateCart?product_uuid=59620499-b239-4cfb-bb8f-870c1025541c&number="+number;
+					previousUri=encodeURIComponent(previousUri);//对传入后台的参数进行编码
+					window.location.href="user/login?previousUri="+previousUri;	
+				}
+			}
+		});
+	//这里本来想定义一个全局变量flag,通过ajax给该方法赋值，由于ajax是异步调用，这个值还没有赋上，下边的方法就已经执行了！！
+	//所以这里直接把要操作的方法写到success方法中了
+	/* 	
+	if(flag){
+	window.location.assign("forePermission/addImmidiateCart?product_uuid=59620499-b239-4cfb-bb8f-870c1025541c&number="+number)
+	}
+	else{
+		var previousUri="forePermission/addImmidiateCart?product_uuid=59620499-b239-4cfb-bb8f-870c1025541c&number="+number;
+		previousUri=encodeURIComponent(previousUri);//对传入后台的参数进行编码
+		window.location.href="user/login?previousUri="+previousUri;	
+	} */
+});
+
+
+});
+
+
+
+</script>
+</head>
+<body>
+<div class="wrapper">
+<div class="imgAndInfo">
+<div class="productImage">
+
+<img  src="static/image/2/10/74d1add4-331e-494a-a046-f622964516f6_vctory.jpg">
+
+</div>
+
+<div class="infoandinfo" >
+<div class="productTitle">
+victor胜利羽毛球拍纳米7/6鬼斩tk30女士单拍7SP/15极速JS08
+</div>
+<div class="priceWrap">
+<div class="producSubTitle">
+【领卷促销】（领券满199减60,299减100,999减200）2017.6.9--2017.6.12期间更多618促销请点击
+</div>
+<div class="productPrice">
+<div class="originalPriceDiv">
+<span class="originalPriceDesc" >原价</span>
+<span class="originalPriceYuan">¥</span>
+<span class="originalPrice">700.0</span>
+</div>
+<div class="promotePriceDiv">
+<span class="promotePriceDesc">促销价</span>
+<span class="promotePriceYuan">¥</span>
+<span class="promoteProce">469.0</span>
+</div>
+</div>
+</div>
+<div class="productSaleAndReviewNumber">
+<div class="productSale">销量<span class="productSaleNumber">10</span></div>   <div class="productReview">评价<span class="productReviewNumber">10</span> <span>库存20</span></div>
+</div>
+
+<div  class="productNumber">
+<span>数量</span>
+<span class="productNumberSettingSpan">
+<input type="text" value="1" name="number" id="number" class="numberSetting">
+</span>
+<span class="arrow">
+<a class="increaseNumber" id="increaseNumber">
+<span class="updown"><img src="static/image/up.png"></span>
+</a>
+<a class="decreaseNumber" id="decreaseNumber">
+<span class="updown"><img src="static/image/down.png"></span>
+</a>
+</span>
+</div>
+
+<div class="buyDiv">
+<a class="addCartLink"><button class="addCartButton"><span class="glyphicon glyphicon-shopping-cart"></span> <span>加入购物车</span></button></a>
+<a class="buyLink"><button class="buyButton"> <span>立即购买</span></button></a>
+</div>
+</div>
+<div style="clear:both"></div>
+
+</div>
+<div class="productDetails">
+<div class="detailHead">
+<a class="detailLine1">商品详情</a>
+<a class="detailLine2">累计评价</a>
+</div>
+<div class="productParameterPart">
+<div class="productParameter">产品参数</div>
+<div class="productParameterList">
+
+<span>商品编号:VICTOR/威克多 超级纳米 </span>
+
+<span>商品毛重:85g</span>
+
+<span>羽毛球打法分类:控球型(防守兼备)</span>
+
+<span>品牌:VICTOR/威克多</span>
+
+</div>
+</div>
+
+</div>
+<div style="clear:both"></div>
+</div>
+</body>
+</html>
+
+<style>
+/*这个CSS保持页脚始终保持在页面底部*/
+body,html{
+height:100%;
+}
+.wrapper{
+min-height: 80%;
+height: auto !important;
+height: 100%;
+}
+
+
+div.footer_desc{
+border-top-style: solid ;
+border-top-width: 1px;
+border-bottom-width:1px;
+border-top-color: #e7e7e7;
+position:absolute;
+width:100%;
+}
+
+div.footer_desc div.descColumn{
+width:30%;
+float:left;
+padding-left:15px;
+}
+/* 每个DIV宽度30%，这里设置左边距10%，让布局看起来居中 */
+div.fristDescColumn{
+margin-left:10%;
+}
+div.footer_desc div.descColumn a{
+display:block;
+padding-top:3px;
+
+}
+.descColumn a{
+color:#999;
+}
+.descColumn a:hover{
+text-decoration:none;
+color:#C40000;
+}
+
+</style>
+<div style="clear:both"></div>
+<div class="footer_desc">
+<div class="descColumn fristDescColumn">
+<span>购物指南</span>
+<a href="">注册</a>
+<a href="">收货地址</a>
+<a href="">开通支付宝</a>
+</div>
+
+<div class="descColumn">
+<span>支付方式</span>
+<a href="">信用卡</a>
+<a href="">支付宝</a>
+<a href="">蚂蚁花呗</a>
+</div>
+
+<div class="descColumn">
+<span>商家服务</span>
+<a href="">商家入驻</a>
+<a href="">物流服务</a>
+<a href="">运营服务</a>
+</div>
+
+</div>
+</html>

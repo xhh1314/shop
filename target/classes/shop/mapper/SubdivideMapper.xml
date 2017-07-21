@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="shop.dao.SubdivideDao">
+<!-- 根据uuid查询subdivide -->
+	<select id="selectById" parameterType="string"  resultType="shop.bean.Subdivide">
+		select uuid,name,description from subdivide where uuid=#{uuid}
+		<!-- <where>
+			<if test="uuid !=null">
+				uuid=#{uuid}
+			</if>
+		</where> -->
+	</select>
+	<!--  查询所有的结果-->
+	<select id="findAll" resultType="shop.bean.Subdivide">
+	select uuid,name,description from subdivide
+	</select>
+	
+	<!--  插入-->
+	<insert id="insertSubdivide" parameterType="shop.bean.Subdivide">
+	insert into Subdivide(uuid,name,description,ct_uuid) values (#{uuid},#{name},#{description},#{category.uuid})
+	</insert>
+	<!-- 更新 -->
+	<update id="updateSubdivide" parameterType="shop.bean.Subdivide">
+	update Subdivide set name=#{name},description=#{description},ct_uuid=#{category.uuid} where uuid=#{uuid}
+	</update>
+	<!-- 删除-->
+	<delete id="deleteSubdivide" parameterType="string">
+	delete from Subdivide where uuid=#{uuid}
+	</delete>
+	
+
+
+</mapper>

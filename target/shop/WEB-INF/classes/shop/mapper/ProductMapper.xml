@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="shop.dao.ProductDao">
+
+	<resultMap type="shop.bean.Product" id="product_subdivide">
+		<result column="uuid" property="uuid" />
+		<result column="name" property="name" />
+		<result column="orignalprice" property="originalPrice" />
+		<result column="promoteprice" property="promotePrice" />
+		<result column="stock" property="stock" />
+		<result column="createdate" property="createTime" />
+		<association property="subdivide" javaType="shop.bean.Subdivide"
+			column="sb_uuid">
+			<id column="subdivide_uuid" property="uuid" />
+			<result column="subdivide_name" property="name" />
+		</association>
+		<collection property="productImage" ofType="shop.bean.ProductImage">
+			<id column="image_id" property="id" />
+			<result column="image_value" property="value"></result>
+			<result column="pd_uuid" property="pd_uuid" />
+		</collection>
+
+	</resultMap>
+
+	<insert id="insert" parameterType="shop.bean.Product">
+
+		insert into product
+		(uuid,name,orignalprice,promoteprice,stock,createdate,sb_uuid)
+
+		values(#{uuid},#{name},#{originalPrice},#{promotePrice},#{stock},#{createTime},#{subdivide.uuid})
+
+	</insert>
+
+	<select id="selectById" parameterType="string" resultMap="product_subdivide">
+
+		select
+		product.uuid,product.name,product.orignalprice,product.promoteprice,product.stock,product.createdate,
+		subdivide.uuid as subdivide_uuid,
+		subdivide.name as subdivide_name,
+		productImage.type as image_value
+		from product left join subdivide on
+		product.sb_uuid=subdivide.uuid left join productImage on
+		product.uuid=productImage.pd_uuid where product.uuid=#{uuid}
+	</select>
+
+	<!-- 根据subdivide.uuid查询出所有的产品 -->
+	<select id="selectBySubdivide" resultMap="product_subdivide"
+		parameterType="string">
+		select product.*,
+		subdivide.uuid as subdivide_uuid,
+		subdivide.name as
+		subdivide_name,
+		productImage.type as image_value
+		from
+		product left join
+		subdivide on product.sb_uuid=subdivide.uuid left join
+		productImage on
+		product.uuid=productImage.pd_uuid where
+		product.sb_uuid=#{uuid}
+
+	</select>
+
+	<select id="findAll" resultMap="product_subdivide">
+
+		select product.*,
+		subdivide.uuid
+		as subdivide_uuid,
+		subdivide.name as subdivide_name,
+		productImage.type
+		as image_value
+		from product left join subdivide on
+		product.sb_uuid=subdivide.uuid left join productImage on
+		product.uuid=productImage.pd_uuid
+
+	</select>
+
+
+	<select id="findProductPropertyValue" parameterType="string"
+		resultType="shop.bean.wrap.ProductPropertyValue">
+
+		select product.name as productName,
+		property.name as propertyName,
+		propertyValue.value as propertyValue
+		from propertyValue left join product on
+		product.uuid=propertyValue.pd_uuid
+		left join property on
+		propertyValue.pp_uuid=property.uuid where
+		product.uuid=#{uuid};
+
+	</select>
+
+
+
+</mapper>

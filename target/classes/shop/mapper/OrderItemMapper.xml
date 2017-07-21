@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="shop.dao.OrderItemDao">
+
+	<resultMap type="shop.bean.OrderItem" id="OrderItemMap">
+	<id column="id" property="id"/>
+		<result column="number" property="number" />
+		<association property="user" javaType="shop.bean.User">
+			<result column="u_uuid" property="uuid" />
+		</association>
+		<association property="product" javaType="shop.bean.Product">
+			<result column="pd_uuid" property="uuid" />
+			<result column="pd_name" property="name" />
+			<result column="orignalprice" property="originalPrice" />
+			<result column="promoteprice" property="promotePrice" />
+			<result column="stock" property="stock"/>
+			<collection property="productImage" ofType="shop.bean.ProductImage">
+				<id column="pd_uuid" property="pd_uuid" />
+				<result column="image_value" property="value"></result>
+			</collection>
+
+		</association>
+
+	</resultMap>
+<!-- 根据用户UUID查询出订单明细，其中一个条件orderID空-->
+	<select id="selectOrderItemsByUser" resultMap="OrderItemMap" parameterType="string">
+		select 
+		orderItem.id as id,
+		user.uuid as u_uuid,
+		product.uuid as pd_uuid,
+		product.name as pd_name,
+		product.stock as stock,
+		orignalprice,
+		promoteprice,
+		productImage.type as image_value,
+		number
+		from user left join orderItem on user.uuid=orderItem.u_uuid left join
+		product on orderItem.pd_uuid=product.uuid left join productImage on
+		product.uuid=productImage.pd_uuid where orderItem.o_uuid is null and user.uuid=#{userUUID}
+	</select>
+	<select id="selectItemsByIds" resultMap="OrderItemMap" >
+	select 
+		orderItem.id as id,
+		user.uuid as u_uuid,
+		product.uuid as pd_uuid,
+		product.name as pd_name,
+		product.stock as stock,
+		orignalprice,
+		promoteprice,
+		productImage.type as image_value,
+		number
+		from user left join orderItem on user.uuid=orderItem.u_uuid left join
+		product on orderItem.pd_uuid=product.uuid left join productImage on
+		product.uuid=productImage.pd_uuid where orderItem.id in
+		<foreach  collection="array" item="oids"  index="index" separator="," open="(" close=")">
+		#{oids}
+		</foreach>
+	</select>
+	
+
+	<insert id="addOrderItem" parameterType="shop.bean.OrderItem">
+		insert into orderItem
+		(pd_uuid,u_uuid,number) values
+		(#{product.uuid},#{user.uuid},#{number})
+	</insert>
+	
+	<select id="selectItemNumberByUser" parameterType="string" resultType="Integer">
+	
+	select count(*) from orderItem where u_uuid=#{userUUID} group by u_uuid; 
+	</select>
+	
+	<select id="selectItemNumberByUserAndProduct"  resultType="Integer">
+	select count(*) from orderItem where u_uuid=#{uid} and pd_uuid=#{pid} group by u_uuid; 
+	</select>
+	<select id="selectItemByProcuctIdAndUserId" resultMap="OrderItemMap" >
+		select 
+		orderItem.id as id,
+		user.uuid as u_uuid,
+		product.uuid as pd_uuid,
+		product.name as pd_name,
+		product.stock as stock,
+		orignalprice,
+		promoteprice,
+		productImage.type as image_value,
+		number
+		from user left join orderItem on user.uuid=orderItem.u_uuid left join
+		product on orderItem.pd_uuid=product.uuid left join productImage on
+		product.uuid=productImage.pd_uuid where product.uuid=#{0} and user.uuid=#{1}
+	</select>
+	
+	<update id="updateNumber" >
+	update orderItem set number=#{number} where  u_uuid=#{uid} and pd_uuid=#{pid} ;
+	</update>
+	
+	<update id="updateOrderId" parameterType="string">
+	update orderItem set o_uuid=#{orderId} where id in 
+	<foreach collection="oids" item="item" index="index" open="(" separator="," close=")">
+	#{item}
+	</foreach> 
+	</update>
+	
+	<delete id="deleteItem" parameterType="string" >
+	delete from orderItem where id=#{id};
+	</delete>
+
+</mapper>
