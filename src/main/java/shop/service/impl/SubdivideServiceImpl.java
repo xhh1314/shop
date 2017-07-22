@@ -13,7 +13,7 @@ import shop.service.SubdivideService;
 import shop.util.GetUUID;
 
 @Service("subdivideService")
-@Scope("prototype")
+@Scope("singleton")
 public class SubdivideServiceImpl implements SubdivideService {
 	
 	@Autowired

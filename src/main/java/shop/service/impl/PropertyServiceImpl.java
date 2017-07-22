@@ -19,7 +19,7 @@ import shop.service.SubdivideService;
 import shop.util.GetUUID;
 
 @Service("propertyService")
-@Scope("prototype")
+@Scope("singleton")
 public class PropertyServiceImpl implements PropertyService {
 	
 	@Autowired

@@ -1,0 +1,786 @@
+
+<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+
+<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+<!DOCTYPE html>
+
+
+
+
+ 
+
+
+<html>
+
+<head>
+	<script src="js/jquery/2.0.0/jquery.min.js"></script>
+	<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+	<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+	<link href="css/fore/style.css" rel="stylesheet">
+<script>
+function formatMoney(num){
+	num = num.toString().replace(/\$|\,/g,'');  
+	if(isNaN(num))  
+	    num = "0";  
+	sign = (num == (num = Math.abs(num)));  
+	num = Math.floor(num*100+0.50000000001);  
+	cents = num%100;  
+	num = Math.floor(num/100).toString();  
+	if(cents<10)  
+	cents = "0" + cents;  
+	for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)  
+	num = num.substring(0,num.length-(4*i+3))+','+  
+	num.substring(num.length-(4*i+3));  
+	return (((sign)?'':'-') + num + '.' + cents);  
+}
+function checkEmpty(id, name){
+	var value = $("#"+id).val();
+	if(value.length==0){
+		
+		$("#"+id)[0].focus();
+		return false;
+	}
+	return true;
+}
+
+
+$(function(){
+
+	
+	$("a.productDetailTopReviewLink").click(function(){
+		$("div.productReviewDiv").show();
+		$("div.productDetailDiv").hide();
+	});
+	$("a.productReviewTopPartSelectedLink").click(function(){
+		$("div.productReviewDiv").hide();
+		$("div.productDetailDiv").show();		
+	});
+	
+	$("span.leaveMessageTextareaSpan").hide();
+	$("img.leaveMessageImg").click(function(){
+		
+		$(this).hide();
+		$("span.leaveMessageTextareaSpan").show();
+		$("div.orderItemSumDiv").css("height","100px");
+	});
+	
+	$("div#footer a[href$=#nowhere]").click(function(){
+		alert("模仿天猫的连接，并没有跳转到实际的页面");
+	});
+	
+
+	$("a.wangwanglink").click(function(){
+		alert("模仿旺旺的图标，并不会打开旺旺");
+	});
+	$("a.notImplementLink").click(function(){
+		alert("这个功能没做，蛤蛤~");
+	});
+	
+
+});
+
+</script>	
+</head>
+
+<body>
+
+
+<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+
+
+<nav class="top ">
+		<a href="/tmall">
+			<span style="color:#C40000;margin:0px" class=" glyphicon glyphicon-home redColor"></span>
+			天猫首页
+		</a>	
+		
+		<span>喵，欢迎来天猫</span>
+		
+		
+		
+		
+			<a href="login.jsp">请登录</a>
+			<a href="register.jsp">免费注册</a>		
+		
+
+
+		<span class="pull-right">
+			<a href="forebought">我的订单</a>
+			<a href="forecart">
+			<span style="color:#C40000;margin:0px" class=" glyphicon glyphicon-shopping-cart redColor"></span>
+			购物车<strong>0</strong>件</a>		
+		</span>
+		
+		
+</nav>
+
+
+
+
+<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+
+
+	<a href="/tmall">
+		<img id="logo" src="img/site/logo.gif" class="logo">
+	</a>
+	
+	<form action="foresearch" method="post" >	
+		<div class="searchDiv">
+			<input name="keyword" type="text" value="" placeholder="时尚男鞋  太阳镜 ">
+			<button  type="submit" class="searchButton">搜索</button>
+			<div class="searchBelow">
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+						<span>
+							<a href="forecategory?cid=73">
+								鐢疯〃
+							</a>
+											
+								<span>|</span>				
+							
+						</span>			
+					
+				
+					
+						<span>
+							<a href="forecategory?cid=71">
+								鐢峰＋瑗挎湇
+							</a>
+											
+								<span>|</span>				
+							
+						</span>			
+					
+				
+					
+						<span>
+							<a href="forecategory?cid=69">
+								鏃跺皻鐢烽瀷
+							</a>
+											
+								<span>|</span>				
+							
+						</span>			
+					
+						
+			</div>
+		</div>
+	</form>	
+
+<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+
+
+<title>模仿天猫官网</title>
+
+<div class="homepageDiv">
+	<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+
+
+
+<script>
+function showProductsAsideCategorys(cid){
+	$("div.eachCategory[cid="+cid+"]").css("background-color","white");
+	$("div.eachCategory[cid="+cid+"] a").css("color","#87CEFA");
+	$("div.productsAsideCategorys[cid="+cid+"]").show();
+}
+
+
+function hideProductsAsideCategorys(cid){
+	$("div.eachCategory[cid="+cid+"]").css("background-color","#e2e2e3");
+	$("div.eachCategory[cid="+cid+"] a").css("color","#000");
+	$("div.productsAsideCategorys[cid="+cid+"]").hide();
+}
+$(function(){
+    $("div.eachCategory").mouseenter(function(){
+        var cid = $(this).attr("cid");
+        showProductsAsideCategorys(cid);
+    });
+    $("div.eachCategory").mouseleave(function(){
+        var cid = $(this).attr("cid");
+        hideProductsAsideCategorys(cid);
+    });
+    $("div.productsAsideCategorys").mouseenter(function(){
+    	var cid = $(this).attr("cid");
+    	showProductsAsideCategorys(cid);
+    });
+    $("div.productsAsideCategorys").mouseleave(function(){
+    	var cid = $(this).attr("cid");
+    	hideProductsAsideCategorys(cid);
+    });
+	
+	$("div.rightMenu span").mouseenter(function(){
+		var left = $(this).position().left;
+		var top = $(this).position().top;
+		var width = $(this).css("width");
+		var destLeft = parseInt(left) + parseInt(width)/2;
+		$("img#catear").css("left",destLeft);
+		$("img#catear").css("top",top-20);
+		$("img#catear").fadeIn(500);
+				
+	});
+	$("div.rightMenu span").mouseleave(function(){
+		$("img#catear").hide();
+	});
+	
+	var left = $("div#carousel-of-product").offset().left;
+	$("div.categoryMenu").css("left",left-20);
+	$("div.categoryWithCarousel div.head").css("margin-left",left);
+	$("div.productsAsideCategorys").css("left",left-20);
+	
+	
+});
+</script>
+
+<img src="img/site/catear.png" id="catear" class="catear"/>
+	
+<div class="categoryWithCarousel">
+
+
+<div class="headbar show1">
+	<div class="head ">
+	
+		<span style="margin-left:10px" class="glyphicon glyphicon-th-list"></span>
+		<span style="margin-left:10px" >商品分类</span>
+		
+	</div>
+	
+	<div class="rightMenu">
+		<span><a href=""><img src="img/site/chaoshi.png"/></a></span>
+		<span><a href=""><img src="img/site/guoji.png"/></a></span>
+
+		
+			
+				<span>
+				<a href="forecategory?cid=81">
+					体育用品
+				</a></span>			
+			
+		
+			
+				<span>
+				<a href="forecategory?cid=80">
+					鐢电儹姘村櫒
+				</a></span>			
+			
+		
+			
+				<span>
+				<a href="forecategory?cid=75">
+					绌鸿皟
+				</a></span>			
+			
+		
+			
+				<span>
+				<a href="forecategory?cid=74">
+					濂宠〃
+				</a></span>			
+			
+		
+			
+		
+			
+		
+			
+		
+	</div>
+	
+</div>
+
+	
+<div style="position: relative">
+	<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+
+	
+<div class="categoryMenu">
+		
+			<div cid="81" class="eachCategory">
+				<span class="glyphicon glyphicon-link"></span>
+				<a href="forecategory?cid=81">
+					体育用品
+				</a>
+			</div>
+		
+			<div cid="80" class="eachCategory">
+				<span class="glyphicon glyphicon-link"></span>
+				<a href="forecategory?cid=80">
+					鐢电儹姘村櫒
+				</a>
+			</div>
+		
+			<div cid="75" class="eachCategory">
+				<span class="glyphicon glyphicon-link"></span>
+				<a href="forecategory?cid=75">
+					绌鸿皟
+				</a>
+			</div>
+		
+			<div cid="74" class="eachCategory">
+				<span class="glyphicon glyphicon-link"></span>
+				<a href="forecategory?cid=74">
+					濂宠〃
+				</a>
+			</div>
+		
+			<div cid="73" class="eachCategory">
+				<span class="glyphicon glyphicon-link"></span>
+				<a href="forecategory?cid=73">
+					鐢疯〃
+				</a>
+			</div>
+		
+			<div cid="71" class="eachCategory">
+				<span class="glyphicon glyphicon-link"></span>
+				<a href="forecategory?cid=71">
+					鐢峰＋瑗挎湇
+				</a>
+			</div>
+		
+			<div cid="69" class="eachCategory">
+				<span class="glyphicon glyphicon-link"></span>
+				<a href="forecategory?cid=69">
+					鏃跺皻鐢烽瀷
+				</a>
+			</div>
+		
+	</div>  
+</div>
+
+<div style="position: relative;left: 0;top: 0;">
+	<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+
+
+<script>
+$(function(){
+	$("div.productsAsideCategorys div.row a").each(function(){
+		var v = Math.round(Math.random() *6);
+		if(v == 1)
+			$(this).css("color","#87CEFA");
+	});
+});
+
+</script>
+
+	<div cid="81" class="productsAsideCategorys">
+	 
+		
+			<div class="row show1">
+				
+					
+						<a href="foreproduct?pid=430">
+							
+								
+									羽毛球拍
+								
+							
+						</a>
+					
+				
+				<div class="seperator"></div>
+			</div>		
+		
+	</div>			
+
+	<div cid="80" class="productsAsideCategorys">
+	 
+		
+	</div>			
+
+	<div cid="75" class="productsAsideCategorys">
+	 
+		
+	</div>			
+
+	<div cid="74" class="productsAsideCategorys">
+	 
+		
+	</div>			
+
+	<div cid="73" class="productsAsideCategorys">
+	 
+		
+	</div>			
+
+	<div cid="71" class="productsAsideCategorys">
+	 
+		
+	</div>			
+
+	<div cid="69" class="productsAsideCategorys">
+	 
+		
+	</div>			
+
+	
+
+</div>
+
+
+
+<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+
+	
+<div id="carousel-of-product"  class="carousel-of-product carousel slide1" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-of-product" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-of-product" data-slide-to="1"></li>
+    <li data-target="#carousel-of-product" data-slide-to="2"></li>
+    <li data-target="#carousel-of-product" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img class="carousel carouselImage" src="img/lunbo/1.jpg" >
+    </div>
+    <div class="item">
+      <img  class="carouselImage" src="img/lunbo/2.jpg" >
+    </div>
+    <div class="item">
+		<img  class="carouselImage" src="img/lunbo/3.jpg" >
+    </div>
+
+    <div class="item">
+        <img  class="carouselImage" src="img/lunbo/4.jpg" >
+    </div>
+
+  </div>
+
+  <!-- Controls -->
+<!--   <a class="left carousel-control" href="#carousel-of-product" role="button" data-slide="prev"> -->
+<!--     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> -->
+
+<!--   </a> -->
+<!--   <a class="right carousel-control" href="#carousel-of-product" role="button" data-slide="next"> -->
+<!--     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> -->
+
+<!--   </a> -->
+
+</div>	
+
+<div class="carouselBackgroundDiv">
+</div>
+
+</div>
+
+
+
+
+
+
+	<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+<!DOCTYPE html>
+
+
+
+	
+
+
+
+
+<div class="homepageCategoryProducts">
+	
+		
+			<div class="eachHomepageCategoryProducts">
+				<div class="left-mark"></div>
+				<span class="categoryTitle">体育用品</span>
+				<br>
+				
+					
+						<div class="productItem" >
+							<a href="foreproduct?pid=430"><img width="100px" src="img/productSingle_middle/.jpg"></a>
+							<a class="productItemDescLink" href="foreproduct?pid=430">
+								<span class="productItemDesc">[热销]
+								羽毛球拍
+								</span>
+						    </a>
+							<span class="productPrice">
+								999.00
+							</span>
+						</div>
+									
+				
+				<div style="clear:both"></div>
+			</div>
+		
+	
+		
+			<div class="eachHomepageCategoryProducts">
+				<div class="left-mark"></div>
+				<span class="categoryTitle">鐢电儹姘村櫒</span>
+				<br>
+				
+				<div style="clear:both"></div>
+			</div>
+		
+	
+		
+			<div class="eachHomepageCategoryProducts">
+				<div class="left-mark"></div>
+				<span class="categoryTitle">绌鸿皟</span>
+				<br>
+				
+				<div style="clear:both"></div>
+			</div>
+		
+	
+		
+			<div class="eachHomepageCategoryProducts">
+				<div class="left-mark"></div>
+				<span class="categoryTitle">濂宠〃</span>
+				<br>
+				
+				<div style="clear:both"></div>
+			</div>
+		
+	
+		
+			<div class="eachHomepageCategoryProducts">
+				<div class="left-mark"></div>
+				<span class="categoryTitle">鐢疯〃</span>
+				<br>
+				
+				<div style="clear:both"></div>
+			</div>
+		
+	
+		
+			<div class="eachHomepageCategoryProducts">
+				<div class="left-mark"></div>
+				<span class="categoryTitle">鐢峰＋瑗挎湇</span>
+				<br>
+				
+				<div style="clear:both"></div>
+			</div>
+		
+	
+		
+			<div class="eachHomepageCategoryProducts">
+				<div class="left-mark"></div>
+				<span class="categoryTitle">鏃跺皻鐢烽瀷</span>
+				<br>
+				
+				<div style="clear:both"></div>
+			</div>
+		
+	
+	
+	
+	<img id="endpng" class="endpng" src="img/site/end.png">
+
+</div>	
+</div>
+
+
+
+
+
+
+<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+
+
+
+<!-- 模仿天猫整站j2ee 教程 为how2j.cn 版权所有-->
+<!-- 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关-->
+<!-- 供购买者学习，请勿私自传播，否则自行承担相关法律责任-->
+
+
+
+<div class="modal " id="loginModal" tabindex="-1" role="dialog" >
+	<div class="modal-dialog loginDivInProductPageModalDiv">
+	        <div class="modal-content">
+					<div class="loginDivInProductPage">
+						<div class="loginErrorMessageDiv">
+							<div class="alert alert-danger" >
+							  <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+							  	<span class="errorMessage"></span>
+							</div>
+						</div>
+							
+						<div class="login_acount_text">账户登录</div>
+						<div class="loginInput " >
+							<span class="loginInputIcon ">
+								<span class=" glyphicon glyphicon-user"></span>
+							</span>
+							<input id="name" name="name" placeholder="手机/会员名/邮箱" type="text">			
+						</div>
+						
+						<div class="loginInput " >
+							<span class="loginInputIcon ">
+								<span class=" glyphicon glyphicon-lock"></span>
+							</span>
+							<input id="password" name="password"  type="password" placeholder="密码" type="text">			
+						</div>
+									<span class="text-danger">不要输入真实的天猫账号密码</span><br><br>
+						<div>
+							<a href="#nowhere">忘记登录密码</a> 
+							<a href="register.jsp" class="pull-right">免费注册</a> 
+						</div>
+						<div style="margin-top:20px">
+							<button class="btn btn-block redButton loginSubmitButton" type="submit">登录</button>
+						</div>
+					</div>	
+	      </div>
+	</div>
+</div>
+
+<div class="modal" id="deleteConfirmModal" tabindex="-1" role="dialog" >
+	<div class="modal-dialog deleteConfirmModalDiv">
+       <div class="modal-content">
+          <div class="modal-header">
+            <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">确认删除？</h4>
+          </div>
+          <div class="modal-footer">
+            <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
+            <button class="btn btn-primary deleteConfirmButton" id="submit" type="button">确认</button>
+          </div>
+        </div>
+      </div>
+	</div>
+</div>
+
+<div id="footer"  class="footer" style="display: block;">
+	
+    <div id="footer_ensure" class="footer_ensure">
+            <a href="#nowhere">
+            	<img src="img/site/ensure.png">
+            </a>
+    </div>
+    
+    <div id="footer_desc" class="footer_desc">
+            <div class="descColumn">
+			    <span class="descColumnTitle">购物指南</span>
+			    <a href="#nowhere" >免费注册</a> 
+			    <a href="#nowhere" >开通支付宝</a> 
+			    <a href="#nowhere" >支付宝充值</a>
+			</div>
+            <div class="descColumn">
+			    <span class="descColumnTitle">天猫保障</span>
+			    <a href="#nowhere" >发票保障</a> 
+			    <a href="#nowhere" >售后规则</a> 
+			    <a href="#nowhere" >缺货赔付</a>
+			</div>
+            <div class="descColumn">
+			    <span class="descColumnTitle">支付方式</span>
+			    <a href="#nowhere" >快捷支付</a> 
+			    <a href="#nowhere" >信用卡</a> 
+			    <a href="#nowhere" >蚂蚁花呗</a>
+			    <a href="#nowhere" >货到付款</a>
+			</div>
+            <div class="descColumn">
+			    <span class="descColumnTitle">商家服务</span>
+			    <a href="#nowhere" >商家入驻</a> 
+			    <a href="#nowhere" >商家中心</a> 
+			    <a href="#nowhere" >天猫智库</a>
+			    <a href="#nowhere" >天猫规则</a>
+			    <a href="#nowhere" >物流服务</a>
+			    <a href="#nowhere" >喵言喵语</a>
+			    <a href="#nowhere" >运营服务</a>
+			</div>
+            <div class="descColumn">
+			    <span class="descColumnTitle">手机天猫</span>
+			    <a href="#nowhere" ><img src="img/site/ma.png"></a> 
+			</div>
+			
+    </div>
+    
+    <div style="clear:both"></div>
+    
+    <img id="cateye" class="cateye" src="img/site/cateye.png">
+    
+    <div id="copyright" class="copyright">
+		<div class="white_link" >
+			<a href="#nowhere" >关于天猫</a>
+			<a href="#nowhere" > 帮助中心</a>
+			<a href="#nowhere" >开放平台</a>
+			<a href="#nowhere" >  诚聘英才</a>
+			<a href="#nowhere" >联系我们</a>
+			<a href="#nowhere" >网站合作</a>
+			<a href="#nowhere" >法律声明</a>
+			<a href="#nowhere" >知识产权</a>
+			<a href="#nowhere" >  廉正举报	</a>
+		</div>
+		<div class="white_link" >
+			<a href="#nowhere" > 阿里巴巴集团</a><span class="slash">|</span>
+			<a href="#nowhere" > 淘宝网</a><span class="slash">|</span>
+			<a href="#nowhere" >天猫 </a><span class="slash">|</span>
+			<a href="#nowhere" >  聚划算</a><span class="slash">|</span>
+			<a href="#nowhere" >全球速卖通</a><span class="slash">|</span>
+			<a href="#nowhere" >阿里巴巴国际交易市场</a><span class="slash">|</span>
+			<a href="#nowhere" >1688</a><span class="slash">|</span>
+			<a href="#nowhere" >阿里妈妈</a><span class="slash">|</span>
+			<a href="#nowhere" >  阿里旅行·去啊	</a><span class="slash">|</span>
+			<a href="#nowhere" >  阿里云计算	</a><span class="slash">|</span>
+			<a href="#nowhere" >  阿里通信 	</a><span class="slash">|</span>
+			<a href="#nowhere" >  YunOS	</a><span class="slash">|</span>
+			<a href="#nowhere" >  阿里旅行·去啊	</a><span class="slash">|</span>
+			<a href="#nowhere" >   万网	</a><span class="slash">|</span>
+			<a href="#nowhere" >  高德	</a><span class="slash">|</span>
+			<a href="#nowhere" > 优视 	</a><span class="slash">|</span>
+			<a href="#nowhere" >  友盟	</a><span class="slash">|</span>
+			<a href="#nowhere" >  虾米	</a><span class="slash">|</span>
+			<a href="#nowhere" >  天天动听	</a><span class="slash">|</span>
+			<a href="#nowhere" >  来往	</a><span class="slash">|</span>
+			<a href="#nowhere" >  钉钉	</a><span class="slash">|</span>
+			<a href="#nowhere" >  支付宝 		</a>
+		</div>
+	
+		<div class="license">
+			<span>增值电信业务经营许可证： 浙B2-20110446</span>
+			<span>网络文化经营许可证：浙网文[2015]0295-065号</span>
+			<span>互联网医疗保健信息服务 审核同意书 浙卫网审【2014】6号 </span>
+			<span>互联网药品信息服务资质证书编号：浙-（经营性）-2012-0005</span>
+		    <div class="copyRightYear">&copy; 2003-2016 TMALL.COM 版权所有</div>
+		    <div>
+		    	<img src="img/site/copyRight1.jpg">
+		    	<img src="img/site/copyRight2.jpg">
+		    </div>
+		</div>
+    </div>
+</div>
+</body>
+</html>	
+	

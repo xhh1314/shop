@@ -14,7 +14,7 @@ import shop.util.GetMD5;
 import shop.util.GetUUID;
 
 @Service("userService")
-@Scope("prototype")
+@Scope("singleton")
 public class UserServiceImpl implements UserService {
 
 	@Autowired

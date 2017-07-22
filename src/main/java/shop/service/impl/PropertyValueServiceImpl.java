@@ -14,7 +14,7 @@ import shop.service.ProductService;
 import shop.service.PropertyValueService;
 
 @Service("propertyValueService")
-@Scope("prototype")
+@Scope("singleton")
 public class PropertyValueServiceImpl implements PropertyValueService {
 
 	@Autowired
@@ -29,7 +29,6 @@ public class PropertyValueServiceImpl implements PropertyValueService {
 		boolean flag=false;
 		propertyValueDao.insert(propertyValues);
 		flag=true;
-		
 		return flag;
 	}
 

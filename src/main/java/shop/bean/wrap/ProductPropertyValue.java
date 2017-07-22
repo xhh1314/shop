@@ -1,5 +1,9 @@
 package shop.bean.wrap;
 
+/**该类用来封装前端传送过来的json数组数据
+ * @author lh
+ *
+ */
 public class ProductPropertyValue {
 	private String productUuid;
 	private String productName;
@@ -17,6 +21,8 @@ public class ProductPropertyValue {
 	public String getPropertyValue() {
 		return propertyValue;
 	}
+	
+	
 	
 
 }

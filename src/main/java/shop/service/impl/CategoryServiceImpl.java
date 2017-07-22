@@ -15,7 +15,7 @@ import shop.service.CategoryService;
 import shop.util.GetUUID;
 
 @Service("categoryService")
-@Scope("prototype")
+@Scope("singleton")
 public class CategoryServiceImpl implements CategoryService {
 
 	

@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 引入bootstrap文件 和jquery -->
+<script type="text/javascript" src="static/js/jquery-3.1.0.js"></script>
+<link rel="stylesheet" href="static/js/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="static/js/bootstrap/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+nav.top a:hover{
+color: #C40000;
+text-decoration: none;
+}
+nav.top{
+background-color: #f2f2f2;
+padding-top: 5px;
+padding-bottom: 5px;
+border-bottom: 1px solid ;
+}
+</style>
+</head>
+<body>
+<nav class="top">
+<a href="">
+购物首页
+<span class="glyphicon glyphicon-home redColor"></span>
+</a>
+<span>欢迎</span>
+<a href="user/login">请登录</a>
+<a href="user/register">注册</a>
+<span class="pull-right">
+<a href="">我的订单</a>
+<span class="glyphicon glyphicon-shopping-cart redColor"></span>
+<a>购物车 <strong>0</strong>件</a>
+<a></a>
+</span>
+</nav>
+</body>
+</html>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 引入bootstrap文件 和jquery -->
+<script type="text/javascript" src="static/js/jquery-3.1.0.js"></script>
+<link rel="stylesheet" href="static/js/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="static/js/bootstrap/js/bootstrap.min.js"></script>
+
+<title>Insert title here</title>
+
+<style type="text/css">
+.productImage{
+float:left;
+margin-left:5%;
+margin-top:1%;
+width:20%;
+height:30%;
+padding:0px auto;
+border:1px solid ;
+}
+.productImage img{
+margin:0px auto;
+}
+.infoandinfo{
+float:left;
+margin-top:1%;
+margin-left:2%;
+border:1px solid ;
+}
+.productTitle{
+font-size:24px;
+}
+.priceWrap{
+background:#ECEBEB;
+}
+.producSubTitle{
+font-size:12px;
+}
+.productPrice{
+font-size:12px;
+margin:10px auto;
+margin-bottom:10px;
+}
+
+.originalPriceDesc{
+margin-left:5px;
+}
+.originalPriceYuan{
+margin-left:10px;
+font-size:16px;
+}
+.originalPrice{
+font-size:16px;
+text-decoration: line-through;
+}
+
+.promotePriceDesc{
+margin-left:5px;
+}
+.promotePriceYuan{
+margin-left:10px;
+color:red;
+font-size:16px;
+}
+.promoteProce{
+color:red;
+font-size:32px;
+}
+.productSaleAndReviewNumber{
+margin-bottom:10px;
+}
+.productSaleAndReviewNumber div{
+display:inline-block;
+text-align:center;
+margin:0px 10px;
+}
+.productSale{
+margin-left:5px;
+}
+
+.productSaleAndReviewNumber .productSaleNumber{
+margin-left:5px;
+color:red;
+font-size:16px;
+}
+.productSaleAndReviewNumber .productReviewNumber{
+margin-left:5px;
+color:red;
+font-size:16px;
+}
+.numberSetting{
+width:30px;
+}
+.productNumber{
+border:1px solid;
+}
+.productNumberSettingSpan{
+border:0px solid;
+display:inline-block;
+width:40px;
+padding-right:10px;
+}
+span.updown img{
+    display:inline-block;
+    vertical-align:top;
+}
+span.updown{
+    border: 1px solid #999;
+    display: block;
+    width: 20px;
+    height: 14px;
+    text-align: center;
+    padding-top:4px;
+}
+.arrow{
+top:5px;
+border:0px solid;
+display:inline-block;
+}
+.buyDiv{
+margin-top:10px;
+}
+.buyDiv a{
+display:inline-block;
+width:30%;
+float:right;
+margin:0px 10px;
+border:1px solid red;
+background:#FFEDED;
+}
+
+.addCartButton{
+width:100%;
+background:#FF0036;
+border:none;
+
+}
+.buyButton{
+width:100%;
+background:#FFEDED;
+border:none;
+}
+.buyButton span{
+color:red;
+font-size:20px;
+}
+.addCartButton span{
+color:white;
+font-size:20px;
+}
+
+.productDetails{
+position:relative;
+margin-top:2%;
+margin-left:26%;
+border:1px solid black;
+width:50%;
+}
+
+.detailHead{
+border:1px solid red;
+width:100%;
+}
+
+.detailHead a{
+margin-left:10px;
+display:inline-block;
+border:1px solid;
+width:10%;
+line-height:50px;
+
+}
+.productParameter{
+margin:10px;
+}
+.productParameterList{
+border:1px solid red;
+width:100%;
+height:40%;
+*zoom:1;
+}
+.productParameterList span{
+display:block;
+margin:10px;
+}
+.productParameterList:after{
+content:"\200B"; display:block; height:0; clear:both;
+}
+
+</style>
+</head>
+<body>
+<div class="imgAndInfo">
+<div class="productImage">
+
+<img  src="static/image/9/0/07184103-d9cf-493e-b378-3f10eb94b0c4_双刃10.jpg">
+
+</div>
+
+<div class="infoandinfo" >
+<div class="productTitle">
+双刃10
+</div>
+<div class="priceWrap">
+<div class="producSubTitle">
+【领卷促销】（领券满199减60,299减100,999减200）2017.6.9--2017.6.12期间更多618促销请点击
+</div>
+<div class="productPrice">
+<div class="originalPriceDiv">
+<span class="originalPriceDesc" >原价</span>
+<span class="originalPriceYuan">¥</span>
+<span class="originalPrice">1000.0</span>
+</div>
+<div class="promotePriceDiv">
+<span class="promotePriceDesc">促销价</span>
+<span class="promotePriceYuan">¥</span>
+<span class="promoteProce">999.0</span>
+</div>
+</div>
+</div>
+<div class="productSaleAndReviewNumber">
+<div class="productSale">销量<span class="productSaleNumber">10</span></div>   <div class="productReview">评价<span class="productReviewNumber">10</span></div>
+</div>
+
+<div  class="productNumber">
+<span>数量</span>
+<span class="productNumberSettingSpan">
+<input type="text" value="0" name="number" class="numberSetting">
+</span>
+<span class="arrow">
+<a class="increaseNumber" id="increaseNumber">
+<span class="updown"><img src="static/image/up.png"></span>
+</a>
+<a class="decreaseNumber" id="decreaseNumber">
+<span class="updown"><img src="static/image/down.png"></span>
+</a>
+</span>
+</div>
+
+<div class="buyDiv">
+<a href="" class="addCartLink"><button class="addCartButton"><span class="glyphicon glyphicon-shopping-cart"></span> <span>加入购物车</span></button></a>
+<a href="" class="buyLink"><button class="buyButton"> <span>立即购买</span></button></a>
+</div>
+</div>
+<div style="clear:both"></div>
+
+</div>
+
+
+<div class="productDetails">
+<div class="detailHead">
+<a class="detailLine1">商品详情</a>
+<a class="detailLine2">累计评价</a>
+</div>
+<div class="productParameterPart">
+<div class="productParameter">产品参数</div>
+<div class="productParameterList">
+
+<span>商品编号:YY001</span>
+
+<span>商品毛重:0.1kg</span>
+
+<span>羽毛球打法分类:控球型(防守兼备)</span>
+
+<span>品牌:yonex</span>
+
+</div>
+
+</div>
+
+</div>
+<div style="clear:both"/>
+</body>
+</html>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+<style>
+div.footer_desc{
+position:relative;
+left:0px;
+top:80%;
+border-bottom-style: solid ;
+border-top-width: 1px;
+border-bottom-width:1px;
+border-top-color: #e7e7e7;
+}
+
+div.footer_desc div.descColumn{
+width:30%;
+float:left;
+padding-left:15px;
+}
+
+div.footer_desc div.descColumn a{
+display:block;
+padding-top:3px;
+
+}
+a{
+color:#999;
+}
+a:hover{
+text-decoration:none;
+color:#C40000;
+}
+
+</style>
+
+<div class="footer_desc">
+<div class="descColumn">
+<span>购物指南</span>
+<a href="">注册</a>
+<a href="">收货地址</a>
+<a href="">开通支付宝</a>
+</div>
+
+<div class="descColumn">
+<span>支付方式</span>
+<a href="">信用卡</a>
+<a href="">支付宝</a>
+<a href="">蚂蚁花呗</a>
+</div>
+
+<div class="descColumn">
+<span>商家服务</span>
+<a href="">商家入驻</a>
+<a href="">物流服务</a>
+<a href="">运营服务</a>
+</div>
+
+</div>
+</html>
