@@ -14,6 +14,7 @@ import shop.bean.User;
 import shop.service.UserService;
 import shop.util.GetUUID;
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
 public class UserTest {

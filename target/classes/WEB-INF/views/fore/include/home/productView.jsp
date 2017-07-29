@@ -17,11 +17,13 @@ margin-left:5%;
 margin-top:1%;
 width:20%;
 height:30%;
-padding:0px auto;
+padding:10px auto;
 border:1px solid #E7E7E7;
 }
 .productImage img{
 margin:0px auto;
+width:100%;
+height:100%;
 }
 .infoandinfo{
 float:left;
@@ -251,6 +253,7 @@ $(".buyButton").click(function(){
 			success:function(data){
 				if(data=="yes"){
 					flag=true;
+					//assign新开一个窗口
 					window.location.assign("${pageContext.request.contextPath}/forePermission/addImmidiateCart?product_uuid=${product.uuid}&number="+number);
 				}
 				if(data=="no"){
@@ -262,7 +265,7 @@ $(".buyButton").click(function(){
 			}
 		});
 	//这里本来想定义一个全局变量flag,通过ajax给该方法赋值，由于ajax是异步调用，这个值还没有赋上，下边的方法就已经执行了！！
-	//所以这里直接把要操作的方法写到success方法中了
+	//所以这里直接把要操作的代码写到success方法中了
 	/* 	
 	if(flag){
 	window.location.assign("${pageContext.request.contextPath}/forePermission/addImmidiateCart?product_uuid=${product.uuid}&number="+number)

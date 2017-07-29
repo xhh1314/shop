@@ -26,6 +26,7 @@ import shop.dao.ProductDao;
 import shop.dao.ProductImageDao;
 import shop.service.ProductService;
 import shop.util.GetUUID;
+import shop.util.PropertyUtil;
 
 @Service("productService")
 @Scope("prototype")
@@ -38,33 +39,7 @@ public class ProductServiceImpl implements ProductService {
 	// 项目根目录
 	//private static String rootPath = null;
 	// 图片存储目录
-	private static String imageRoot = null;
-
-	static {// 静态代码块加载读取出项目根目录和图片存储目录
-		Properties property = new Properties();
-		String srcpath=null;
-		try {
-			try {
-				//注意这里toURI().getPath()的用法
-				srcpath=ProductServiceImpl.class.getClassLoader().getResource("").toURI().getPath();
-				System.out.println("srcPath="+srcpath);
-			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			property.load(new FileInputStream(
-					new File(srcpath+ "application.properties")));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException(e);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException(e);
-		}
-		imageRoot = property.getProperty("imageroot");
-		//rootPath = srcpath + property.getProperty("imageroot");
-	}
-
+	private static String imageRoot = PropertyUtil.getProperty("imageroot");
 	@Override
 	public boolean insert(Product product, MultipartFile image,HttpServletRequest request) throws IOException {
 		// TODO Auto-generated method stub

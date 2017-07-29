@@ -67,10 +67,12 @@
 		product.uuid,product.name,product.orignalprice,product.promoteprice,product.stock,product.createdate,
 		subdivide.uuid as subdivide_uuid,
 		subdivide.name as subdivide_name,
+		category.name as category_name,
 		productImage.type as image_value
 		from product left join subdivide on
-		product.sb_uuid=subdivide.uuid left join productImage on
+		product.sb_uuid=subdivide.uuid left join category on subdivide.ct_uuid=category.uuid left join productImage on
 		product.uuid=productImage.pd_uuid) a where  a.name like concat('%',#{keys},'%') or subdivide_name like concat('%',#{keys},'%') 
+		or category_name like concat('%',#{keys},'%') 
 	</select>
 
 	<select id="findAll" resultMap="product_subdivide">

@@ -34,6 +34,10 @@ public class ForePermissionController {
 
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private Product product;
+	@Autowired
+	private OrderItem orderItem;
 
 	/**
 	 * 将商品添加到购物车，同时更新购物车中商品总数量
@@ -47,7 +51,7 @@ public class ForePermissionController {
 		product.setUuid(product_uuid);
 		String number = request.getParameter("number");
 		User user = (User) request.getSession().getAttribute("user");
-		OrderItem orderItem = new OrderItem();
+		OrderItem orderItem =new OrderItem();
 		orderItem.setNumber(Integer.parseInt(number));
 		orderItem.setUser(user);
 		orderItem.setProduct(product);

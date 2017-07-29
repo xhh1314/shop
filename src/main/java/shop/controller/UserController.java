@@ -31,6 +31,7 @@ import shop.bean.User;
 import shop.redis.LoginCookie;
 import shop.service.OrderService;
 import shop.service.UserService;
+import shop.util.PropertyUtil;
 import shop.util.ResponseWrite;
 
 @Controller
@@ -41,11 +42,15 @@ public class UserController {
 	@Autowired
 	private OrderService orderService;
 	
+	
+	/**
+	 * 用户是否启用redis
+	 */
+	private static String isRedis=PropertyUtil.getProperty("isRedis");
+	
 	@RequestMapping(value="/register",method=RequestMethod.GET)
 	public String registerBefor(ModelMap model){
-		User user=new User();
-		
-		model.addAttribute("user",user);
+		model.addAttribute("user",new User());
 		return "fore/register";
 	}
 	//注册控制器
@@ -57,8 +62,8 @@ public class UserController {
 	}
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String loginBefor(ModelMap model,HttpServletRequest request){
-		User user=new User();
-		model.addAttribute("user",user);
+		//User user=new User();
+		model.addAttribute("user",new User());
 		//这里为了解决权限拦截ajax请求时，登录成功后返回到原网页的问题
 		String previousUri=request.getParameter("previousUri");
 		if(previousUri!=null)
@@ -75,9 +80,12 @@ public class UserController {
 			HttpSession session=request.getSession();
 			session.setAttribute("user", user_new);
 			loginInial(session);//初始化页面
+			if(isRedis.equals("yes"))
+			{//启用redis才执行该操作
 			Jedis conn=new Jedis("localhost");
 			Cookie cookie=LoginCookie.jedisLogin(conn, request, user_new);//redis中存储用户cookie
 			response.addCookie(cookie);
+			}
 			model.addAttribute("message","");
 			String previousUri=request.getParameter("previousUri");//previousUri是登录页面隐藏表单
 			//如果是从其他链接跳转到登录界面的，则登录成功之后返回登录之前的页面

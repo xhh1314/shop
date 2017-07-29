@@ -1,5 +1,10 @@
 package shop.bean;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("prototype")
 public class OrderItem {
 	private int id;
 	private User user;

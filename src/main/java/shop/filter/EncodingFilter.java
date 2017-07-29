@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class EncodingFilter implements Filter {
 	
-	String encoding=null;
-	FilterConfig filterConfig=null;
+	private String encoding=null;
+	private FilterConfig filterConfig=null;
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {

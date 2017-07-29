@@ -21,5 +21,4 @@ public interface ProductService {
 	public List<ProductPropertyValue> selectProductPropertyValue(String uuid);
 	public List<Product> selectBykeys(String keys);
 	
-
 }

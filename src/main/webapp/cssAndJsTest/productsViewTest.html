@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 引入bootstrap文件 和jquery -->
+<script type="text/javascript" src="../static/js/jquery-3.1.0.js"></script>
+<link rel="stylesheet" href="../static/js/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="../static/js/bootstrap/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+nav.top a:hover{
+color: #C40000;
+text-decoration: none;
+}
+nav.top{
+background-color: #f2f2f2;
+padding-top: 5px;
+padding-bottom: 5px;
+border-bottom: 1px solid #CCC;
+}
+nav.top a{
+color:#999999;
+}
+.glyphicon-home {
+color:#FF0036;
+}
+.glyphicon-shopping-cart{
+color:#FF0036;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	//如果用户已经登录，则隐藏登录注册菜单,未登录则隐藏注销菜单
+	if($("#username").text().length>0)
+		{
+		$("#loginTitle").hide();
+		$("#registerTitle").hide();
+		}else{
+			$("#logout").hide();
+		}
+
+//如果购物车数量为空，则默认显示为0件
+  if($("strong").text()=="" || $("strong")==undefined)
+	  $("strong").text("0");
+	
+});
+</script>
+<nav class="top">
+<a href="../fore/index">
+购物首页
+<span class="glyphicon glyphicon-home redColor"></span>
+</a>
+<span>欢迎</span><span id="username"></span>
+<a id="loginTitle" href="../user/login">请登录</a>
+<a id="registerTitle" href="../user/register">注册</a>
+<span class="pull-right">
+<a href="">我的订单</a>
+<span class="glyphicon glyphicon-shopping-cart redColor"></span>
+<a href="../forePermission/showCart">购物车 <strong></strong>件</a>
+<a id="logout" href="../user/logout">注销</a>
+</span>
+</nav>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>手机</title>
+<style type="text/css">
+div.productView{
+position:relative;
+width:100%;
+top:0px;
+box-sizing:border-box;
+}
+.productViewChild{
+position:relative;
+width:90%;
+height:auto;
+margin:0px auto;
+border:1px solid #CCC;
+overflow:auto;
+}
+div.productView div.eachProduct{
+width:20%;
+height:350px;
+padding:10px;
+float:left;
+border:1px solid white;
+}
+div.productView div.eachProduct:hover{
+border:1px solid #CCC;
+}
+div.eachProduct a img{
+width:200px;
+height:220px;
+}
+ div.eachProduct .price{
+ font-size: 16px;
+ color:red;
+ }
+div.eachProduct .productName{
+ }
+ .filtrate{
+ width:100%;
+ height:29px;
+ background:#F1F1F1;
+ padding:3px 2px;
+ }
+ .filtrate .filtrateSort{
+ display:inline-block;
+ float:left;
+ margin-left:5%;
+ line-height:25px;
+ }
+ .filtrate .filtrateSort a{border:1px solid #CCC;color:#333;text-decoration:none;padding:2px 10px;cursor:pointer;background:#FFF;}
+ .filtrate .filtrateSort a:hover{border:1px solid #E4393C;color:#E4393C !important;}
+ .filtrate .filtratePage{display:inline-block;float:right;margin-right:5%;line-height:25px;}
+ .filtrate .filtratePage a{border:1px solid #CCC;color:#333;text-decoration:none;padding:2px 10px;cursor:pointer; background:#FFF;
+ }
+ 
+</style>
+<script type="text/javascript">
+var price_href;
+function changePriceButton(){
+ var uri=$(".filtratePrice").attr("price_href");
+ var sort=uri.substring(uri.indexOf("&")+1);
+ var d;
+ if(sort!="sort=descending" && sort!="sort=ascending")
+ {
+ var uri = uri + "&sort=ascending";
+			var uri_begin = uri.substring(0, uri.indexOf("?")+1);
+			var selectInfoMessage=uri.substring(uri.indexOf("selectInfo=")+11,uri.indexOf("&"));
+			selectInfoMessage=encodeURI(selectInfoMessage);
+			var selectInfo="selectInfo="+selectInfoMessage;
+			var uri_end = uri.substring(uri.indexOf("&"));
+			//uri_end = encodeURIComponent(uri_end);//编码
+			price_href = uri_begin + selectInfo+uri_end;
+			//document.getElementById("filtratePrice").href=uri;
+			//$(".filtratePrice").attr("href", uri);
+			//$(".test").attr("href", uri);
+			return true;
+ }
+ if(sort=="sort=ascending")
+ {
+ $(".price i").html("降序");
+ }
+ else if(sort=="sort=descending")
+ $(".price i").html("升序");
+ var uri_begin=uri.substring(0,uri.indexOf("?")+1);
+ var uri_end=uri.substring(uri.indexOf("?")+1);
+  uri_end=encodeURIComponent(uri_end);//编码
+  uri=uri_begin+uri_end;
+ $(".filtrateSort .price").attr("href",uri);
+ return true;
+}
+
+</script>
+</head>
+<body >
+<div class="wrapper">
+
+<div class="filtrate" >
+<div class="filtrateSort">
+<a class="comprehensive"><span>综合排序</span></a>
+<a class="sales"><span>销量</span></a>
+<a class="filtratePrice"  id="filtratePrice" price_href="../fore/select?selectInfo=手机"  sort="" ><span>价格</span><i ></i></a>
+<a class="comment"><span>评论数</span></a>
+</div>
+
+<div class="filtratePage">
+<span>1/1</span>
+<a onclick="changePriceButton()"><span>前一页</span></a>
+<a  class="test" href=""><span>下一页</span></a>
+</div>
+
+</div>
+
+	<div class="productView">
+	<div class="productViewChild">
+	<h2></h2>
+
+		<div class="eachProduct">
+		
+		<a href="../fore/showProduct/4b3975e0-2960-4f8b-a3ae-b5dd945b71e6"><img src="../static/image/15/0/491545be-9d88-4d41-b961-0ef6c1913e78_荣耀1.png"></a><br>
+		
+		<a class="price">2299.0</a><br><a class="productName" href="../fore/showProduct/4b3975e0-2960-4f8b-a3ae-b5dd945b71e6">荣耀9 全网通 标配版 4GB+64GB 魅海蓝 移动联通电信4G手机 双卡双待</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="../fore/showProduct/d42ebc95-2e43-40cc-bc2f-877958c3cceb"><img src="../static/image/14/15/5c7246c0-4aa0-484c-bee6-996b396ae2db_华为P10.png"></a><br>
+		
+		<a class="price">4388.0</a><br><a class="productName" href="../fore/showProduct/d42ebc95-2e43-40cc-bc2f-877958c3cceb">华为 HUAWEI P10 Plus 4G智能手机 草木绿 全网通(6GB RAM+64GB RAM)</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="../fore/showProduct/c5fd97fa-ca1b-4382-9752-afa3a0541c54"><img src="../static/image/3/14/3d7639ca-adfe-4b3e-8db6-97afa449c666_华为MATE9.png"></a><br>
+		
+		<a class="price">3099.0</a><br><a class="productName" href="../fore/showProduct/c5fd97fa-ca1b-4382-9752-afa3a0541c54">华为 Mate 9 4GB+32GB版 月光银 移动联通电信4G手机 双卡双待</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="../fore/showProduct/6496bc32-00e8-4913-95ee-74236b732f67"><img src="../static/image/8/12/501a8332-a673-41cb-9593-65f99dc22ed5_魅蓝E.png"></a><br>
+		
+		<a class="price">1099.0</a><br><a class="productName" href="../fore/showProduct/6496bc32-00e8-4913-95ee-74236b732f67">魅族 魅蓝E 3GB+32GB 全网通公开版 星空灰 移动联通电信4G手机 双卡双待</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="../fore/showProduct/e50d2b1f-6c46-4d82-a9bd-d21b5389aee9"><img src="../static/image/8/0/7260d188-c16b-471b-af6f-c3207cac3269_魅族7.png"></a><br>
+		
+		<a class="price">3249.0</a><br><a class="productName" href="../fore/showProduct/e50d2b1f-6c46-4d82-a9bd-d21b5389aee9">魅族(MEIZU) 魅蓝note5 双卡双待4G手机 香槟金 全网通(4G RAM+64G ROM)标配</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="../fore/showProduct/77593cc3-382d-4e48-b267-9feac49fca45"><img src="../static/image/12/4/6e1074da-4c52-44d9-bb69-584fb2600fa4_oppo1.png"></a><br>
+		
+		<a class="price">2999.0</a><br><a class="productName" href="../fore/showProduct/77593cc3-382d-4e48-b267-9feac49fca45">OPPO R11 全网通4G+64G 双卡双待手机 玫瑰金色</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="../fore/showProduct/7aef3ebd-58c3-45c4-b294-f90617ae6dba"><img src="../static/image/4/5/c541ca6d-ce0c-45a3-b2f8-7e6cef3c68cb_oppo9.png"></a><br>
+		
+		<a class="price">2599.0</a><br><a class="productName" href="../fore/showProduct/7aef3ebd-58c3-45c4-b294-f90617ae6dba">OPPO R9s 全网通4G+64G 双卡双待手机 黑色</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="../fore/showProduct/5066f1fc-55e0-489b-ad02-797b4fe11acb"><img src="../static/image/11/8/fb4c03f8-1bbe-4a43-8e2a-f3967b925958_APP1.png"></a><br>
+		
+		<a class="price">5555.0</a><br><a class="productName" href="../fore/showProduct/5066f1fc-55e0-489b-ad02-797b4fe11acb">苹果(Apple) iPhone 7 移动联通电信4G手机 玫瑰金 128G 标配</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="../fore/showProduct/b0c93101-c11c-4c23-a8e4-dfcdf479e757"><img src="../static/image/13/8/8b3c640f-92dc-4e95-80c5-8f8d68d78b1f_APP3.png"></a><br>
+		
+		<a class="price">3999.0</a><br><a class="productName" href="../fore/showProduct/b0c93101-c11c-4c23-a8e4-dfcdf479e757">Apple iPhone 6s Plus (A1699) 32G 玫瑰金色 移动联通电信4G手机</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="../fore/showProduct/3d655320-5923-43ea-b14b-2c7d56a674a6"><img src="../static/image/7/1/a62745fb-0382-46e1-8091-f24469490245_XM1.png"></a><br>
+		
+		<a class="price">2499.0</a><br><a class="productName" href="../fore/showProduct/3d655320-5923-43ea-b14b-2c7d56a674a6">小米6 全网通 6GB+64GB 亮黑色 移动联通电信4G手机 双卡双待</a>
+		</div>
+
+		<div class="eachProduct">
+		
+		<a href="../fore/showProduct/266953b8-c525-4773-9730-4703231f39dc"><img src="../static/image/8/9/b7248b8f-c208-42b0-aba1-68906decada8_XM2.png"></a><br>
+		
+		<a class="price">2799.0</a><br><a class="productName" href="../fore/showProduct/266953b8-c525-4773-9730-4703231f39dc">小米Note2 全网通 标准版 4GB内存 64GB ROM 亮黑色</a>
+		</div>
+
+
+</div>
+</div>
+</div>
+</body>
+</html>
+
+<style>
+/*这个CSS保持页脚始终保持在页面底部*/
+body,html{
+height:100%;
+}
+.wrapper{
+min-height: 80%;
+height: auto !important;
+height: 100%;
+}
+
+
+div.footer_desc{
+border-top-style: solid ;
+border-top-width: 1px;
+border-bottom-width:1px;
+border-top-color: #e7e7e7;
+position:static;
+width:100%;
+overflow: auto;
+}
+
+div.footer_desc div.descColumn{
+width:30%;
+float:left;
+padding-left:15px;
+}
+/* 每个DIV宽度30%，这里设置左边距10%，让布局看起来居中 */
+div.fristDescColumn{
+margin-left:10%;
+}
+div.footer_desc div.descColumn a{
+display:block;
+padding-top:3px;
+
+}
+.descColumn a{
+color:#999;
+}
+.descColumn a:hover{
+text-decoration:none;
+color:#C40000;
+}
+
+</style>
+<div style="clear:both"></div>
+<div class="footer_desc">
+<div class="descColumn fristDescColumn">
+<span>购物指南</span>
+<a href="">注册</a>
+<a href="">收货地址</a>
+<a href="">开通支付宝</a>
+</div>
+
+<div class="descColumn">
+<span>支付方式</span>
+<a href="">信用卡</a>
+<a href="">支付宝</a>
+<a href="">蚂蚁花呗</a>
+</div>
+
+<div class="descColumn">
+<span>商家服务</span>
+<a href="">商家入驻</a>
+<a href="">物流服务</a>
+<a href="">运营服务</a>
+</div>
+
+</div>
+</html>

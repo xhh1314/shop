@@ -3,6 +3,11 @@ package shop.bean;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("prototype")
 public class Product {
 	private String uuid;
 	private String name;

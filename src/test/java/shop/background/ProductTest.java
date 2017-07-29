@@ -1,6 +1,7 @@
 package shop.background;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import shop.bean.Category;
 import shop.bean.Product;
+import shop.bean.comparator.ProductAscending;
+import shop.bean.comparator.ProductDescending;
 import shop.bean.wrap.ProductPropertyValue;
 import shop.service.ProductService;
 import shop.util.GetUUID;
@@ -61,6 +64,14 @@ public class ProductTest {
 		
 		List<Product> products=productService.selectBykeys("qiu");
 		System.out.println(products);
+	}
+	//测试product排序功能
+	@Test
+	public void sortTest(){
+		List<Product> products=productService.selectBykeys("手机");
+		Collections.sort(products,ProductDescending.getInstance());
+		System.out.println(products);
+		
 	}
 
 }

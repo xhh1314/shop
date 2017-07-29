@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import redis.clients.jedis.Jedis;
 import shop.bean.User;
 
+/**存储用户cookie信息
+ * 存储登录用户id+name+password+ip,如果cookie带过来的用户密码一致，并且ip也一致，则可免登陆
+ * @author lh
+ *
+ */
 public class LoginCookie {
 	
 	/**
@@ -37,8 +42,8 @@ public class LoginCookie {
 		return cookie;
 	}
 	
-	/**验证用户是否存在，查询redis数据库，根据user_id查询出来的user密码 ip匹配的话 与cookie带过来的匹配则，返回true
-	 * 验证成功将User加入session
+	/**验证用户是否存在，查询redis数据库，根据user_id查询出来的password 和 ip  与cookie带过来的匹配，则返回true
+	 * 验证成功,将user加入session
 	 * @param conn
 	 * @param request
 	 * @return
@@ -94,7 +99,7 @@ public class LoginCookie {
 	   * @param request 
 	   * @return 
 	   */
-	public static String getIpAddress(HttpServletRequest request) { 
+	private static String getIpAddress(HttpServletRequest request) { 
 	    String ip = request.getHeader("x-forwarded-for"); 
 	    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
 	      ip = request.getHeader("Proxy-Client-IP"); 

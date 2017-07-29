@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import redis.clients.jedis.Jedis;
 import shop.redis.LoginCookie;
+import shop.util.PropertyUtil;
 import shop.util.ResponseWrite;
 
 /**
@@ -17,6 +18,12 @@ import shop.util.ResponseWrite;
  *如果是ajax请求，则直接给前端返回消息“isAjax”，需要在前端判断进行跳转
  */
 public class PermissionInterceptor implements HandlerInterceptor {
+	
+	/**
+	 * 用户是否启用redis
+	 */
+	private static String isRedis=PropertyUtil.getProperty("isRedis");
+	
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -32,9 +39,12 @@ public class PermissionInterceptor implements HandlerInterceptor {
 		if(session.getAttribute("user")!=null)
 			return true;
 		else{
-			Jedis conn=new Jedis("localhost");
-			if(LoginCookie.checkUser(conn, request))
-				return true;
+			if(isRedis.equals("yes")){//判断用户是否启用redis数据库
+				Jedis conn=new Jedis("localhost");
+				if(LoginCookie.checkUser(conn, request))
+					return true;
+			}
+			
 			//这里对请求进行判断，看看是否是ajax请求，如果是ajax请求，则直接在拦截器这里给前端返回一个消息，然后再前端ajax函数里进行判断跳转到登录界面
 			String XRequested=request.getHeader("X-Requested-With");
 			if(XRequested!=null && XRequested.equals("XMLHttpRequest"))
@@ -70,5 +80,8 @@ public class PermissionInterceptor implements HandlerInterceptor {
 		// TODO Auto-generated method stub
 
 	}
+
+	
+	
 
 }

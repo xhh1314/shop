@@ -82,9 +82,6 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 
-	<!-- 自动扫描 -->
-	<context:component-scan base-package="shop" />
-	<!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/> -->
 
 
 

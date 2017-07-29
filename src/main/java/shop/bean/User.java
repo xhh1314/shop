@@ -2,6 +2,11 @@ package shop.bean;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("prototype")
 public class User {
 	private String uuid;
 	private String name;

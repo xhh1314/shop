@@ -17,7 +17,7 @@ nav.top{
 background-color: #f2f2f2;
 padding-top: 5px;
 padding-bottom: 5px;
-border-bottom: 1px solid ;
+border-bottom: 1px solid #CCC;
 }
 nav.top a{
 color:#999999;

@@ -16,14 +16,15 @@
 
 <mvc:annotation-driven ></mvc:annotation-driven>
 
-
-
 <!--  开启注释，使用了context:component-scan,就不需要再配置context:annotation-->
 
 <!-- <context:annotation-config></context:annotation-config> -->
 
-<!-- 扫描Control类 -->
-<context:component-scan base-package="shop.controller"></context:component-scan>
+	<!-- 自动扫描 -->
+	<context:component-scan base-package="shop" />
+	<!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/> -->
+
+
 
 <mvc:resources mapping="/static/**" location="/static/"/>
 
@@ -71,7 +72,8 @@
 <mvc:interceptors>
 <mvc:interceptor>
 <mvc:mapping path="/**"/>
-<bean class="shop.filter.PermissionInterceptor"></bean>
+<bean class="shop.filter.PermissionInterceptor">
+</bean>
 </mvc:interceptor>
 </mvc:interceptors> 
 
