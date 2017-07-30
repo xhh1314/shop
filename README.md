@@ -5,18 +5,18 @@
 
 <h3>项目截图</h3><br>
 首页<br>
-<img src="https://github.com/xhh1314/shop/briefImage/main.png">
+<img src="https://github.com/xhh1314/shop/blob/master/briefImage/main.png">
 产品列表<br>
-<img src="https://github.com/xhh1314/shop/briefImage/select.png">
+<img src="https://github.com/xhh1314/shop/blob/master/briefImage/select.png">
 产品详情<br>
-<img src="https://github.com/xhh1314/shop/briefImage/productView.png">
+<img src="https://github.com/xhh1314/shop/blob/master/briefImage/productView.png">
 购物车<br>
-<img src="https://github.com/xhh1314/shop/briefImage/cart.png">
+<img src="https://github.com/xhh1314/shop/blob/master/briefImage/cart.png">
 订单结算<br>
-<img src="https://github.com/xhh1314/shop/briefImage/order.png">
+<img src="https://github.com/xhh1314/shop/blob/master/briefImage/order.png">
 注册<br>
-<img src="https://github.com/xhh1314/shop/briefImage/register.png">
+<img src="https://github.com/xhh1314/shop/blob/master/briefImage/register.png">
 登录<br>
-<img src="https://github.com/xhh1314/shop/briefImage/login.png">
+<img src="https://github.com/xhh1314/shop/blob/master/briefImage/login.png">
 
 
