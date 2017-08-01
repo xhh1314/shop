@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +32,7 @@ import shop.service.OrderService;
 import shop.service.UserService;
 import shop.util.PropertyUtil;
 import shop.util.ResponseWrite;
+import shop.util.SpringBeanUtil;
 
 @Controller
 @RequestMapping(value="user")
@@ -50,7 +50,7 @@ public class UserController {
 	
 	@RequestMapping(value="/register",method=RequestMethod.GET)
 	public String registerBefor(ModelMap model){
-		model.addAttribute("user",new User());
+		model.addAttribute("user",SpringBeanUtil.getBeanInstance(User.class));
 		return "fore/register";
 	}
 	//注册控制器
@@ -63,7 +63,7 @@ public class UserController {
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String loginBefor(ModelMap model,HttpServletRequest request){
 		//User user=new User();
-		model.addAttribute("user",new User());
+		model.addAttribute("user",SpringBeanUtil.getBeanInstance(User.class));
 		//这里为了解决权限拦截ajax请求时，登录成功后返回到原网页的问题
 		String previousUri=request.getParameter("previousUri");
 		if(previousUri!=null)
@@ -97,7 +97,7 @@ public class UserController {
 			}
 		}
 		else{
-			model.addAttribute("user",new User());
+			model.addAttribute("user",SpringBeanUtil.getBeanInstance(User.class));
 			model.addAttribute("message","用户名或者密码错误！");
 			return "fore/login";
 			

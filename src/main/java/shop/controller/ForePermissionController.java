@@ -24,6 +24,7 @@ import shop.bean.User;
 import shop.exception.MyException;
 import shop.service.OrderService;
 import shop.util.ResponseWrite;
+import shop.util.SpringBeanUtil;
 
 /**
  * @author lh 前台需要权限验证的访问都到这个控制类
@@ -34,11 +35,6 @@ public class ForePermissionController {
 
 	@Autowired
 	private OrderService orderService;
-	@Autowired
-	private Product product;
-	@Autowired
-	private OrderItem orderItem;
-
 	/**
 	 * 将商品添加到购物车，同时更新购物车中商品总数量
 	 * @param request
@@ -47,7 +43,7 @@ public class ForePermissionController {
 	@RequestMapping(value = "/addCart")
 	public void addOderItem(HttpServletRequest request, HttpServletResponse response) {
 		String product_uuid = request.getParameter("product_uuid");
-		Product product = new Product();
+		Product product = SpringBeanUtil.getBeanInstance(Product.class);
 		product.setUuid(product_uuid);
 		String number = request.getParameter("number");
 		User user = (User) request.getSession().getAttribute("user");
@@ -83,7 +79,7 @@ public class ForePermissionController {
 	@RequestMapping(value = "/addImmidiateCart")
 	public String buyOderItem(HttpServletRequest request, HttpServletResponse response,ModelMap model) {
 		String product_uuid = request.getParameter("product_uuid");
-		Product product = new Product();
+		Product product =SpringBeanUtil.getBeanInstance(Product.class);
 		product.setUuid(product_uuid);
 		String number = request.getParameter("number");
 		User user = (User) request.getSession().getAttribute("user");
@@ -97,7 +93,7 @@ public class ForePermissionController {
 			session.setAttribute("cartNumber", cartNumber);
 			List<OrderItem> orderItems=orderService.selectOrderItemByProductAndUser(product_uuid,user.getUuid());
 			model.addAttribute("orderItems",orderItems);
-			model.addAttribute("orders",new Orders());
+			model.addAttribute("orders",SpringBeanUtil.getBeanInstance(Orders.class));
 			return "fore/orders";//无异常则返回到提交订单页面
 
 		} catch (Exception e) {
@@ -161,7 +157,7 @@ public class ForePermissionController {
 	}
 	@RequestMapping(value="/showOrder")
 	public String showOrder(ModelMap model,@RequestParam("oids") String[] oids){
-		model.addAttribute("orders",new Orders());
+		model.addAttribute("orders",SpringBeanUtil.getBeanInstance(Orders.class));
 		List<OrderItem> orderItems=orderService.selectOrderItemsByIds(oids);
 		model.addAttribute("orderItems",orderItems);
 		return "fore/orders";

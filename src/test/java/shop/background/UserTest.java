@@ -3,6 +3,8 @@ package shop.background;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -11,8 +13,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import shop.bean.User;
+import shop.bean.wrap.ProductPropertyValue;
+import shop.service.CategoryService;
 import shop.service.UserService;
 import shop.util.GetUUID;
+import shop.util.SpringBeanUtil;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,9 +37,7 @@ public class UserTest {
 	}
 	@Test
 	public void JsonTest(){
-		
-		
-		//String email="{\"email\":\"90344@qq.com\"}";
+				//String email="{\"email\":\"90344@qq.com\"}";
 		String email="{\"email\":\"903440799\"}";
 		
 		JsonParser jsonParser= new JsonParser();
@@ -54,5 +57,19 @@ public class UserTest {
 		System.out.println(user);
 		
 	}
+	@Test
+	public void Test111(){
+		ApplicationContext ctx =new ClassPathXmlApplicationContext("spring-mvc.xml");
+		CategoryService cs=(CategoryService)ctx.getBean("categoryService");
+	}
+	@Test
+	public void Test22(){
+		ApplicationContext ctx =new ClassPathXmlApplicationContext("applicationContext.xml");
+		//ProductPropertyValue ppv=ctx.getBean(ProductPropertyValue.class);
+	ProductPropertyValue ppv =SpringBeanUtil.getBeanInstance(ProductPropertyValue.class);
+
+	System.out.println(ppv.getProductName()+ppv.getProductUuid()+ppv.getPropertyValue());
+	}
+	
 
 }

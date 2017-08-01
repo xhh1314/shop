@@ -60,7 +60,8 @@
     </bean>
     
 <!-- 权限拦截过滤器--> 
-<bean id="permissionInterceptor" class="shop.filter.PermissionInterceptor"></bean>
+<bean id="permissionInterceptor" class="shop.filter.PermissionInterceptor">
+</bean>
 <bean id="handlerMapping"
             class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
         <property name="interceptors">
@@ -76,16 +77,4 @@
 </bean>
 </mvc:interceptor>
 </mvc:interceptors> 
-
-
-
-
-
-
-
-
-
-
-
-
 </beans>

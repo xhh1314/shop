@@ -24,7 +24,6 @@ public class PermissionInterceptor implements HandlerInterceptor {
 	 */
 	private static String isRedis=PropertyUtil.getProperty("isRedis");
 	
-
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {

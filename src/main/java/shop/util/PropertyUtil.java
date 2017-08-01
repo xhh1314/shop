@@ -7,13 +7,17 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.context.ResourceLoaderAware;
+import org.springframework.core.io.ResourceLoader;
+
 import shop.service.impl.ProductServiceImpl;
 
 /**这个工具类目前有缺陷，当读取配置文件失败的时候，无法抛出checked异常
  * @author lh
  *
  */
-public class PropertyUtil {
+public class PropertyUtil{
 
 	private static Properties property = new Properties();
 	
@@ -46,4 +50,6 @@ public class PropertyUtil {
 		//System.out.println("调用getProperty方法");
 		return property.getProperty(key);
 	}
+
+	
 }

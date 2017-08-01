@@ -20,7 +20,7 @@ import shop.service.impl.CategoryServiceImpl;
 import shop.util.GetUUID;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext.xml")
+@ContextConfiguration("/spring-mvc.xml")
 public class CategoryTest {
 	
 	@Autowired

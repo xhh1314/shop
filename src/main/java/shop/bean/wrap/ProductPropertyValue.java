@@ -9,6 +9,13 @@ public class ProductPropertyValue {
 	private String productName;
 	private String propertyName;
 	private String propertyValue;
+	
+	public ProductPropertyValue(String productUuid, String productName, String propertyName, String propertyValue) {
+		this.productUuid = productUuid;
+		this.productName = productName;
+		this.propertyName = propertyName;
+		this.propertyValue = propertyValue;
+	}
 	public String getProductUuid() {
 		return productUuid;
 	}

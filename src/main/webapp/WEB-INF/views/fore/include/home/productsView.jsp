@@ -94,7 +94,7 @@ div.eachProduct .productName {
 }
 </style>
 <script type="text/javascript">
-var price_href;//定义价格全局变量
+var price_href;//定义价格排序链接全局变量
 	function changePriceButton() {
 		uri = $(".filtrateSort .price").attr("price_href");
 		var sort = uri.substring(uri.indexOf("&") + 1);
