@@ -69,9 +69,6 @@
 		</tx:attributes>
 	</tx:advice>
 
-
-
-
 	<!-- 事务 aop 配置 -->
 	<aop:config>
 		<aop:pointcut id="serviceMethods" expression="within(shop.service..*)" />
@@ -80,13 +77,6 @@
 
 	<!-- 启用对事务注解的支持 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
-
-
-
-
-
-
 
 
 
